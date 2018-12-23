@@ -1,2 +1,2 @@
 # SummaTRON-AVA
-App for conecting with SummaTRON-API
+Example of implementaion of SummaTRON-API
