@@ -1,0 +1,1012 @@
+@font-face {
+  font-family: 'Assistant';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Assistant'), local('Assistant-Regular'), url(assistant.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+body {font-family: 'Assistant', sans-serif; font-size:16px}
+input {font:inherit}
+h4 {margin-top:3px;margin-bottom:3px}
+p {margin-top:2px;margin-bottom:2px}
+
+.text-input-wrapper {
+  border:1px solid;
+  border-radius:6px;
+  border-color:#CCC;
+  padding:1px 6px 1px 1px;
+  display:inline-block;
+  max-height:34px;
+}
+.text-input-wrapper input {
+  border:none;
+  background:none;
+  outline:none;
+  padding:2px 2px;
+  margin:0 0;
+  font:inherit;
+  max-height:34px;
+  z-index:1;
+}
+.text-input-wrapper span {
+  cursor:pointer;
+  color:blue;
+  font-weight:bold;
+  visibility:hidden;
+  max-height:34px;
+  color:#228B22;
+  margin-left:-20px;
+  z-index:5;
+}
+
+.label-input-wrapper {
+  border:0;
+  padding:1px 6px 1px 1px;
+  display:inline-block;
+}
+.label-input-wrapper label {
+  border:none;
+  background:none;
+  outline:none;
+  padding:2px 2px;
+  margin:0 0;
+  font:inherit;
+}
+.label-input-wrapper span {
+  cursor:pointer;
+  color:#228B22;
+}
+.magictime {
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.magictime.slideLeftRetourn {
+-webkit-animation-duration: 1s;
+-moz-animation-duration: 1s;
+-o-animation-duration: 1s;
+animation-duration: 1s;
+}
+.slideLeft {
+  -webkit-animation-name: slideLeft;
+  animation-name: slideLeft;
+}
+.slideLeftRetourn {
+  -webkit-animation-name: slideLeftRetourn;
+  animation-name: slideLeftRetourn;
+}
+.holeOut {
+  -webkit-animation-name: holeOut;
+  animation-name: holeOut;
+}
+.boingInUp {
+  -webkit-animation-name: boingInUp;
+  animation-name: boingInUp;
+}
+@-webkit-keyframes slideLeft {
+  0% {
+    -webkit-transform-origin: 0 0;;
+    -webkit-transform: translateX(0%);
+  }
+
+  30% {
+    -webkit-transform-origin: 0 0;
+    -webkit-transform: translateX(-30%);
+  }
+}
+@keyframes slideLeft {
+  0% {
+    transform-origin: 0 0;
+    transform: translateX(0%);
+  }
+
+  30% {
+    transform-origin: 0 0;
+    transform: translateX(-30%);
+  }
+}
+@-webkit-keyframes slideLeftRetourn {
+  0% {
+    -webkit-transform-origin: 0 0;
+    -webkit-transform: translateX(-30%);
+  }
+
+  30% {
+    -webkit-transform-origin: 0 0;
+    -webkit-transform: translateX(0%);
+  }
+}
+@keyframes slideLeftRetourn {
+  0% {
+    transform-origin: 0 0;
+    transform: translateX(-30%);
+  }
+
+  30% {
+    transform-origin: 0 0;
+    transform: translateX(0%);
+  }
+}
+@-webkit-keyframes holeOut {
+  0% {
+    opacity: 1;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-transform: scale(1, 1) rotateY(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-transform: scale(0, 0) rotateY(180deg);
+  }
+}
+@keyframes holeOut {
+  0% {
+    opacity: 1;
+    transform-origin: 50% 50%;
+    transform: scale(1, 1) rotateY(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform-origin: 50% 50%;
+    transform: scale(0, 0) rotateY(180deg);
+  }
+}
+@-webkit-keyframes boingInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform-origin: 50% 0%;
+    -webkit-transform: perspective(800px) rotateX(-90deg);
+  }
+  
+  50% {
+    opacity: 1;
+    -webkit-transform-origin: 50% 0%;
+    -webkit-transform: perspective(800px) rotateX(50deg);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform-origin: 50% 0%;
+    -webkit-transform: perspective(800px) rotateX(0deg);
+  }
+}
+@keyframes boingInUp {
+  0% {
+    opacity: 0;
+    transform-origin: 50% 0%;
+    transform: perspective(800px) rotateX(-90deg);
+  }
+  
+  50% {
+    opacity: 1;
+    transform-origin: 50% 0%;
+    transform: perspective(800px) rotateX(50deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform-origin: 50% 0%;
+    transform: perspective(800px) rotateX(0deg);
+  }
+}
+
+
+
+
+.ui-widget { font-family: Trebuchet MS, Tahoma, Verdana,
+Arial, sans-serif; font-size: 16px; }
+
+.animate {
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	transition: all .3s;
+}
+#hit {
+	padding: 10px;
+}
+#log {
+	position: absolute;
+	padding: 10px;
+}
+
+ .custom-combobox {
+    position: relative;
+    display: inline-block;
+  }
+  .custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+  }
+  .custom-combobox-input {
+    margin: 0;
+    padding: 5px 10px;
+  }
+  
+  
+
+        #outer {
+            background:#FFFFFF;
+            border-radius: 5px;
+            color: #000;
+        }
+
+        #grafTickets, #grafProductos {
+            width: 100%;
+            height: 120px;
+            box-sizing: border-box;
+            float: left;
+			border:0;
+			outline: none;
+        }
+
+		#grafTickets .arc {
+            stroke-weight: 0.1;
+            fill: #228B22;
+        }
+        #grafProductos .arc {
+            stroke-weight: 0.1;
+            fill: #f0a417;
+        }
+		
+		.background {
+			fill: #FFFFFF;
+			fill-opacity: 0.01;
+		}
+       
+        .selectedRadial {
+            border-radius: 3px;
+            background: #FFFFFF;
+            color: #000;
+            box-shadow: 0 1px 5px rgba(f,f,f,0.4);
+            -moz-box-shadow: 0 1px 5px rgba(f,f,f,0.4);
+            border: 1px solid rgba(200,200,200,0.85);
+        }
+
+        .graf {
+            border-radius: 3px;
+            background: #FFFFFF;
+			height: 100px;
+			width: 100px;
+			border:0;
+        }
+
+  
+div.ordenable {
+	width: 224px;
+	background-color:WhiteSmoke;
+	border: 0; 
+	padding: 10px;
+	margin: 5px;
+	}
+
+div ul.ordenable {list-style:none;width:240px; margin-left:0px;padding: 0px;}
+.summaliordenable {font-size: 16px;color:#228B22;width:240px;margin: auto;padding: 0px;}
+
+div.contenedor { 
+margin-left: 10px; 
+margin-right:10px; 
+padding: 5px; 
+overflow: auto;
+overflow-y: scroll;
+max-height:560px;
+-webkit-overflow-scrolling: auto;
+}
+
+div.contenedorpie { 
+margin-left: 10px; 
+margin-right:10px; 
+padding: 5px; 
+overflow: auto;
+overflow-y: scroll;
+width:auto;
+-webkit-overflow-scrolling: auto;
+}
+
+div.cabecera{
+position:relative;
+min-height:25px;
+opacity:0;	
+}
+div.centrado {
+width:auto;
+margin: 0 auto;
+margin-top:10px;
+padding:4px 8px;
+z-index:1;
+}
+@media (min-width: 768px) {
+  .centrado {
+    width: 750px;
+  }
+}
+div.pasillocentrado {
+width:auto;
+margin: auto;
+margin-top:10px;
+padding:8px;
+z-index:1;
+}
+
+@media screen and (device-aspect-ratio: 40/71) 
+ {
+  div.pasillocentrado {  
+	margin-top:0px;  
+	margin-left:0px;
+  }
+}
+
+div.subcentrado {
+position:relative;
+top:40px;
+width:auto;
+margin: 0 auto;
+margin-top:2px;
+padding:2px 8px;
+}
+
+div.portadacentrado {
+position:relative;
+top:30px;
+width:auto;
+margin: 0 auto;
+margin-top:8px;
+padding:5px;
+}
+div.contenedor-pie {margin-left: -20px;padding-top: 60px; width:270px;}
+div.burbujas {margin-top: 70px;width:270px; font-size:10px;font-family:sans-serif}
+input.nsumma {margin-left: 0px;padding-left: 3px; width:40px;border-style: solid; border-color:Gainsboro ; border-width:1px}
+.summacab {margin-top: 1px; margin-bottom:1px; padding-top:8px; text-align: center; font-size: 16px; height:36px; background-color:#228B22; color:#FFFFFF; font-weight: bold;}
+.summacabgra {margin-top: 2px; margin-bottom:2px; text-align: center; font-size: 22px; color:#228B22; font-weight: bold}
+.summaprog {position:relative;width:150px;margin-top: 100px; margin-bottom:2px; margin-left:5px;text-align: center; font-size: 16px; color:#228B22; font-weight: bold}
+
+div.summacablt {margin-top: 2px; margin-bottom:2px; text-align: center; font-size: 16px; color:#228B22; font-weight: bold}
+label.summalabel {text-align: left;font-size: 16px; color:#228B22; font-weight: bold}
+label.summalabelsm {text-align: left;font-size: 14px; color:#228B22; font-weight: bold}
+table {border:0;margin:0px;padding:0px}
+.summath {border:0; padding:0px; margin-top: 1px; margin-bottom:1px; text-align: center; font-size: 1px; height: 1px; }
+.summatr {border:0; margin-top: 2px; margin-bottom:2px; padding:0px; text-align: center; vertical-align:baseline; font-size: 16px; height: 24px; font-weight: bold}
+.summainfth {border:0; margin-top: 0px; margin-bottom:0px; padding:0px; font-size: 16px; vertical-align:middle; max-height: 38px; height: 38px;color:#228B22; font-weight: bold}
+
+.summalttr  {border:0; margin: 2px; padding:2px;font-weight:normal;}
+.summalttd  {vertical-align:middle;margin: 2px; padding:2px; height:16px; font-size: 14px; font-weight:normal;}
+
+.summatabla {
+border:0;
+width:100%;
+margin:auto;
+}
+.summagrid {
+border-collapse: separate;
+border:2px;
+padding:5px;
+width:100%;
+margin:auto;
+}
+table tr.portadasep {margin: 1px; padding:0px; font-size:6px}
+table tr td.summatd  {margin: 2px; padding:2px; font-size:6px;vertical-align:middle;}
+.portadatd {
+	margin: 5px; 
+	padding:2px; 
+	min-height:124px;
+	vertical-align:middle;
+	}
+@media (min-width: 1024px)
+ {
+	.portadatd {  
+	min-height:300px;
+  }
+}
+.sector{
+	border:1px solid;
+	border-radius:6px;
+	border-color:#CCC;
+	margin:3px 6px 3px 0px;
+	padding:3px 3px 3px 10px;
+	max-height:30px;
+	width:100%;
+}
+.caja{
+	border:1px solid;
+	border-radius:6px;
+	border-color:#CCC;
+	margin:3px 3px 3px 40px;
+	padding:3px 3px 3px 10px;
+	width:80%;;
+}
+.matriz{
+	border:1px solid;
+	border-radius:6px;
+	border-color:#CCC;
+	margin-top:3px;
+	margin:3px 3px 3px 20px;
+	padding:3px 3px 3px 10px;
+	max-height:30px;
+	width:90%;
+}
+.establecimiento{
+	vertical-align: middle;
+	margin:3px 3px 3px 3px;
+	padding:3px 3px 3px 3px;
+	width:95%;
+    border-bottom: 2px dotted #228B22;
+}
+.establecimiento1{
+	vertical-align: middle;
+	margin:3px 3px 3px 3px;
+	padding:3px 3px 3px 3px;
+	width:95%;
+}
+div.aviso{
+	position:absolute;
+    margin-top: 200px;
+    margin-left: 100px;
+	padding:20px;
+	border-radius: 15px;
+	width:auto;
+	background-color:#D8D8D8;
+	z-index:5;
+	opacity:1;
+}
+@media screen and (device-aspect-ratio: 40/71) 
+ {
+  div.aviso {    
+	margin-left:60px;
+  }
+}
+div.borrado{
+	position:absolute;
+    margin-top: 5px;
+    margin-left: 310px;
+	padding:5px;
+	border-radius: 5px;
+	width:auto;
+	background-color:#D8D8D8;
+	z-index:5;
+	opacity:1;
+}
+@media screen and (device-aspect-ratio: 40/71) 
+ {
+  div.borrado {    
+	margin-left:230px;
+  }
+}
+div.etiqueta{
+	position:absolute;
+    margin-top: 5px;
+    margin-left: 5px;
+	padding:5px;
+	border-radius: 5px;
+	width:auto;
+	background-color:#D8D8D8;
+	z-index:5;
+	opacity:1;
+}
+div.minialta{
+	position:absolute;
+    margin-top: -30px;
+    margin-left: 235px;
+	padding:5px;
+	border-radius: 5px;
+	width:auto;
+	background-color:#WhiteSmoke;
+	z-index:5;
+	opacity:1;
+}
+div.minietiqueta{
+	position:absolute;
+    margin-top: -15px;
+    margin-left: 235px;
+	padding:5px;
+	border-radius: 5px;
+	width:auto;
+	background-color:#WhiteSmoke;
+	z-index:5;
+	opacity:1;
+}
+@media screen and (device-aspect-ratio: 40/71) 
+ {
+  div.minietiqueta {    
+	margin-top: -35px;
+  }
+}
+div.imgcentrada {
+width:310px;
+margin: 0 auto;
+}
+.summainput
+{
+	width:250px;
+	font-size: 16px;
+	border:0;
+	background-color:transparent;
+}
+li.summainput{
+	font-size: 16px;
+}
+.img_thumb{
+    float: left;
+    border: 0px;
+    padding: 2px;
+    background-color: white;
+}
+div.summaimagen{
+    width: auto;
+    height: auto;
+    z-index: 1;
+    background-color: WhiteSmoke ;
+    padding: 0px;
+}
+@media screen and (device-aspect-ratio: 40/71) 
+ {
+  div.summaimagen {    
+	width:300px;
+	height:470px;
+  }
+}
+
+@media screen and (device-aspect-ratio: 16/9) {
+  div.summaimagen {    
+	width:394px;
+  }	
+}
+/*  capa hover con la descripcion de cada miniatura */
+.img_desc{
+    width: 280px;
+    height: 130px;
+    position: absolute;
+    z-index: 2;
+    background-color: WhiteSmoke ;
+    opacity: 0.9;
+	margin-left:0px;
+    padding: 5px 5px 5px 5px;
+    display: none;
+	font-size: 14px;
+	color:black;
+}
+
+.summa_desc{
+    width: 260px;
+    height: 40px;
+    position: absolute;
+    z-index: 5;
+    background-color: WhiteSmoke ;
+    opacity: 0.90;
+	margin-top:0px;
+	margin-left:10px;
+    padding: 5px 5px 5px 5px;
+    display: none;
+	font-size: 14px;
+	color:black;
+}
+.img_thumb img{
+    z-index: -1;
+}
+
+
+.btnsumma{
+display:inline-block;
+padding:2px 10px;
+height:48px;
+white-space: nowrap;
+color: #333;
+background-color: transparent;
+text-align: center;
+line-height: 0;
+border: 0;
+outline: none;
+font-size: 14px;
+background: none;
+/*border-radius: 20px;*/
+}
+
+.summa-config {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/configuracion.png) no-repeat 0px 0px;
+}
+.summa-mensajes {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/mensaje.png) no-repeat 0px 0px;
+}
+.summa-buscar {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/buscar.png) no-repeat 0px 0px;
+}
+.summa-graficos {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/graficos.png) no-repeat 0px 0px;
+}
+.summa-home {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(../img/glyphicons-home.png) no-repeat 0px 0px;
+}
+.summa-show-lines {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-show-lines.png) no-repeat 0px 0px;
+}
+.summa-user {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-user.png) no-repeat 0px 0px;
+}
+.summa-off {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-off.png) no-repeat 0px 0px;
+}
+.summa-camara {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/camara.png) no-repeat 0px 0px;
+}
+.summa-configon {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/configon.png) no-repeat 0px 0px;
+}
+.summa-configoff {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/configoff.png) no-repeat 0px 0px;
+}
+.summa-mensajeson {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/mensajeson.png) no-repeat 0px 0px;
+}
+.summa-mensajesoff {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/mensajesoff.png) no-repeat 0px 0px;
+}
+.summa-cameraon {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/cameraon.png) no-repeat 0px 0px;
+}
+.summa-cameraoff{
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/cameraoff.png) no-repeat 0px 0px;
+}
+.summa-buscaron {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/buscaron.png) no-repeat 0px 0px;
+}
+.summa-buscaroff {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/buscaroff.png) no-repeat 0px 0px;
+}
+.summa-graficoson {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/graficoson.png) no-repeat 0px 0px;
+}
+.summa-graficosoff{
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/graficosoff.png) no-repeat 0px 0px;
+}
+.summa-eye-open {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-eye-open.png) no-repeat 0px 0px;
+}
+.summa-list-alt {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-list-alt.png) no-repeat 0px 0px;
+}
+.summa-search {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-search.png) no-repeat 0px 0px;
+}
+.summa-file {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-file.png) no-repeat 0px 0px;
+}
+.summa-pictures {
+    position: relative;
+    display: inline-block;;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-pictures.png) no-repeat 0px 0px;
+}
+.summa-charts {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-charts.png) no-repeat 0px 0px;
+}
+.summa-pie-chart {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-pie-chart.png) no-repeat 0px 0px;
+}
+.summa-pie-chart1{
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-pie-chart1.png) no-repeat 0px 0px;
+}
+.summa-stats-line {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-stats-line.png) no-repeat 0px 0px;
+}
+.summa-bubbles {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-bubbles.png) no-repeat 0px 0px;
+}
+.summa-list {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-list.png) no-repeat 0px 0px;
+}
+.summa-edit {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-edit.png) no-repeat 0px 0px;
+}
+.summa-shopping-cart {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-shopping-cart.png) no-repeat 0px 0px;
+}
+.summa-fire {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-fire.png) no-repeat 0px 0px;
+}
+.summa-piggy-bank {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-piggy-bank.png) no-repeat 0px 0px;
+}
+.summa-gift {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-gift.png) no-repeat 0px 0px;
+}
+.summa-coins {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-coins.png) no-repeat 0px 0px;
+}
+.summa-shop {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-shop.png) no-repeat 0px 0px;
+}
+.summa-barcode {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-barcode.png) no-repeat 0px 0px;
+}
+.summa-info {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-info.png) no-repeat 0px 0px;
+}
+.summa-phone-alt {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-phone-alt.png) no-repeat 0px 0px;
+}
+.summa-star {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-star.png) no-repeat 0px 0px;
+}
+.summa-heart {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-heart.png) no-repeat 0px 0px;
+}
+.summa-screenshot {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-screenshot.png) no-repeat 0px 0px;
+}
+.summa-globe {
+    position: relative;
+    display: inline-block;
+    height: 33px;  /*height of icon */
+    width: 33px;  /*width of icon */
+    background: url(/img/icon/glyphicons-globe.png) no-repeat 0px 0px;
+}
+.summa-calendar-green {
+    position: relative;
+    display: inline-block;
+    height: 26px;  /*height of icon */
+    width: 26px;  /*width of icon */
+    background: url(../img/green-calendar.png) no-repeat 0px 0px;
+}
+.summa-ano-green {
+    position: relative;
+    display: inline-block;
+    height: 26px;  /*height of icon */
+    width: 26px;  /*width of icon */
+    background: url(../img/green-ano.png) no-repeat 0px 0px;
+}
+.summa-mes-green {
+    position: relative;
+    display: inline-block;
+    height: 26px;  /*height of icon */
+    width: 26px;  /*width of icon */
+    background: url(../img/green-mes.png) no-repeat 0px 0px;
+}
+.summa-semana-green {
+    position: relative;
+    display: inline-block;
+    height: 26px;  /*height of icon */
+    width: 26px;  /*width of icon */
+    background: url(../img/green-semana.png) no-repeat 0px 0px;
+}
+.summa-margen-green {
+    position: relative;
+    display: inline-block;
+    height: 26px;  /*height of icon */
+    width: 26px;  /*width of icon */
+    background: url(../img/green-margen.png) no-repeat 0px 0px;
+}
+.summa-calendar-grey {
+    position: relative;
+    display: inline-block;
+    height: 26px;  /*height of icon */
+    width: 26px;  /*width of icon */
+    background: url(../img/grey-calendar.png) no-repeat 0px 0px;
+}
+.summa-ano-grey {
+    position: relative;
+    display: inline-block;
+    height: 26px;  /*height of icon */
+    width: 26px;  /*width of icon */
+    background: url(../img/grey-ano.png) no-repeat 0px 0px;
+}
+.summa-mes-grey {
+    position: relative;
+    display: inline-block;
+    height: 26px;  /*height of icon */
+    width: 26px;  /*width of icon */
+    background: url(../img/grey-mes.png) no-repeat 0px 0px;
+}
+.summa-semana-grey {
+    position: relative;
+    display: inline-block;
+    height: 26px;  /*height of icon */
+    width: 26px;  /*width of icon */
+    background: url(../img/grey-semana.png) no-repeat 0px 0px;
+}
+.summa-margen-grey {
+    position: relative;
+    display: inline-block;
+    height: 26px;  /*height of icon */
+    width: 26px;  /*width of icon */
+    background: url(../img/grey-margen.png) no-repeat 0px 0px;
+}
+
+.embed-responsive {
+  position: relative;
+  display: block;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.embed-responsive .embed-responsive-item,
+.embed-responsive iframe,
+.embed-responsive embed,
+.embed-responsive object,
+.embed-responsive video {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.embed-responsive-16by9 {
+  padding-bottom: 56.25%;
+}
+.embed-responsive-4by3 {
+  padding-bottom: 75%;
+}

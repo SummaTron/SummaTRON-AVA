@@ -1,0 +1,36 @@
+/*!
+ * Start Bootstrap - Blog Post (https://startbootstrap.com/template-overviews/blog-post)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-blog-post/blob/master/LICENSE)
+ */
+
+body {
+  padding-top: 54px;
+}
+div.numCircle {
+    border-radius: 45%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+	box-sizing: initial;
+	display: inline-block;
+    background: #D2FCFB;
+    border: 2px solid #08005C;
+    color: #000;
+    text-align: center;
+    font: 32px Arial, sans-serif;
+}
+div.price {
+   
+   	box-sizing: initial;
+	display: inline-block;
+    color: #fff;
+    text-align: center;
+}
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
