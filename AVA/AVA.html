@@ -1,0 +1,209 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125578563-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-125578563-1');
+	</script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="www.summatron.com">
+	<title>SummaTron. TRX Accounts Viewer. A implentation of SummaTRON-API.</title>	
+	<meta name="description" content="Agregador de cuentas de TRON"/>
+	<meta name="title" content="SummaTron. TRX Accounts Viewer"/>
+	<meta name="keywords" content="criptodivisa, crytocurrency, criptomoneda, tron, TRX, 2FA,  Authentication, Security, bitcoin, binance, tronwallet, wallet, "/>
+
+ 	<link rel="icon" type="image/png" href="/icon.png" />
+    <link href="/tron/css/blog-post.css" rel="stylesheet">
+	<link href="/tron/css/font-awesome.min.css" rel="stylesheet">
+    <link href='/tron/css/bootstrap.min.css' rel='stylesheet' />
+	<link href='/tron/css/summadata.css' rel='stylesheet' />
+	<link href='/tron/css/jquery-ui.min.css' rel='stylesheet' />
+
+	<script src='/tron/js/scripts.js'></script>
+    <script src='/tron/js/jquery.min.js'></script>
+    <script src='/tron/js/bootstrap.min.js'></script>
+	<script src="/tron/js/jquery-ui.min.js"></script>	
+	<script src="/tron/js/funcionestron.js" ></script>
+	<script src="/api/js/qrcode.min.js" ></script>
+	<script src="/api/js/apisummatron.js" ></script> 
+	
+</head>
+<body>
+
+<div id="cabecera"></div>
+
+<div class="container">
+	<div class="row">
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+			<br>
+			<center><label style="font-size:2.5em" id="titulo">SummaTRON-AVA </label>
+			<label style="font-size:1.5em">(<a href="http://www.summatron.com/registro.html">Sign up</a>)</label>
+			</center>
+			<div id="PanelLista" style="display:none">
+				<table class="table table-striped">
+				 <thead>	
+					<tr>
+					<th colspan="2">
+					</th>
+					</tr>
+					<tr>
+						<th scope="col">State of the Accounts</th>
+						<th scope="col" id="labelprecio"></th>
+					</tr>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cantidad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+					</tr>
+				  </thead>
+				<tbody id="zona">
+				</tbody>
+				</table>
+				<br>
+			</div>
+			<div id="PanelDetalle" style="display:none">
+				<ul class="nav nav-tabs responsive " role="tablist">
+					<li><a class="nav-link active" role="tab" data-toggle="tab" href="#menu1" id="lmenu1">Detail</a></li>
+					<li><a class="nav-link" role="tab" data-toggle="tab" href="#menu2" id="lmenu2">Transactions</a></li>
+					<li><a class="nav-link" role="tab" data-toggle="tab" href="#menu3">Tokens</a></li>
+					<li style="margin-top:5px"><a class="nav-link" role="tab" data-toggle="tab" href="#menu4"><span class="fa fa-times" size="1.5em" onclick="Cerrar()"></span></a></li>
+				</ul>
+
+				<div class="tab-content">
+					<div id="menu1" class="tab-pane fade">
+						<div class="card">
+						<div class="card-body" style="padding:5px">
+							<div class="table-responsive">
+								<table class="table table-hover" >
+								<tbody id="zonaDetalleCuenta">
+								</tbody>
+								</table>
+							</div>
+						</div>
+						</div>
+					</div>
+					<div id="menu2" class="tab-pane fade">
+						<div class="card">
+						<div class="card-body" style="padding:5px">
+							<div class="table-responsive">
+								<table class="table table-hover" >
+								<tbody id="zonaDetalleTransfer">
+								</tbody>
+								</table>
+							</div>
+						</div>
+						</div>
+					</div>
+					<div id="menu3" class="tab-pane fade">
+						<div class="card">
+						<div class="card-body" style="padding:5px">
+							<div class="table-responsive">
+								<table class="table table-hover" >
+								<tbody id="zonaDetalleTokens">
+								</tbody>
+								</table>
+							</div>
+						</div>
+						</div>
+					</div>
+					<div id="menu4" class="tab-pane fade">
+					</div>
+				</div>
+			<br>	
+			</div>
+			<div id="PanelIRS" style="display:block"></div>
+			<div id="PanelEspera" style="display:none">
+				<hr>
+				<center><h2><label>Procesing data</label></h2></center>
+				<hr>
+			</div>
+			<div id="PanelInfo" style="display:block">
+				<p style="text-align:justify">
+				SummaTRON is a project based on the Blockchain of TRON, a <a href="https://www.summatron.com/api.html" target="_blank"> API of identification </a> and two crytocurrency: SummaTRON ( STX) and IdTronix (ITX). <br>
+				<br>
+				The following describes the access to SUMMATRON-AVA, the process of linking the accounts from the wallet and how the amount of the investment is indicated to the system.
+				</p>				
+				<hr>
+				<div><img class = "img-fluid redondeado" style = "border: 1px solid gray" src="/tron/img/AVA1.png"/></div>				
+				<hr>
+				<div><img class = "img-fluid redondeado" style = "border: 1px solid gray" src="/tron/img/AVA2.png"/></div>
+				<hr>
+				<div><img class = "img-fluid redondeado" style = "border: 1px solid gray" src="/tron/img/AVA3.png"/></div>				
+				<hr>
+				<div><img class = "img-fluid redondeado" style = "border: 1px solid gray" src="/tron/img/AVA4.png"/></div>
+				<hr>
+				<div><img class = "img-fluid redondeado" style = "border: 1px solid gray" src="/tron/img/AVA5.png"/></div>
+				<hr>				
+				<p style = "text-align: justify">
+				Thanks for reading the entire text. In gratitude and if you can test the API, <b> we will send you 1 SummaTRON and 1,000 IdTronix to your account </b>. Only fill your TRON account in the next field.
+				</p>
+				<br>
+				<div id="Donate">
+					<input type="text" id="CuentaDonate" value="" size="40">
+					<input type="button" value="Send" onclick="Enviar()">
+				</div>
+				<hr>
+				<br><br>
+			</div>
+		</div>
+
+	    <div class="col-md-4">
+			<div class="card my-4">
+				<h5 class="card-header">How do I see my accounts?</h5>
+				<div class="card-body">
+					<p style="text-align:justify">
+					From the wallet account, you can send an IdTronix token (ITX). <br>
+					If you want to buy them IdTronix you can do it from the wallet or from <a href="https://tronscan.org/#/tokens/list?search=IdTronix" target="_blank"> www.tronscan.org </a> <br>
+					To do this you can use the QR that are displayed on the main screen. <br>
+					TronWallet allows PAY by scanning the QR directly reads all the data, otherwise use SEND and type the indicated Description. <br>
+					Once the token is received, the portfolio of linked accounts is displayed. <br>
+					Only the owner of the Private Key can send a token from an account, thus identifying SummaTron to its users. <br>
+					<b> Without touching the PC or the tablet, the user can access their TRON accounts. </b> <br>
+					Simply amazing !, without identification or prior registration. All thanks to <b> TRON.NETWORK </b>
+					</p> 
+				</div>
+			  </div>
+			  <div class="card my-4">
+				<h5 class="card-header">How to link accounts?</h5>
+				<div class="card-body">
+					<p style="text-align:justify">
+					1) Choose one of your accounts as the main one, and use it from the wallet (it does not have to be the one with the most TRX)<br>
+					2) Buy as many SummaTRON (STX) accounts as you have. <br>
+					3) From the main account send 1 STX to each account you want to link. <br>
+					<br> <br>
+					This way all your accounts are linked in the TRON Blockchain. <br>
+					At any time you can link new accounts. <br>
+					If you want to unlink an account, simply return the STX to the main account. <br>
+					Only your accounts with at least 1 STX will appear in the report.
+					<br> <br>
+					If you need to buy SummaTRON to complete the process of linking your accounts,
+					you can buy them from the wallet or from <a href="https://tronscan.org/#/tokens/list?search=SummaTRON" target="_blank"> www.tronscan.org </a> <br>						
+					</p> 
+				</div>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="pie"></div>
+<input type="hidden" id="Precio" value= "">
+<input type="hidden" id="Dolar" value= "0">
+<input type="hidden" id="Euro" value= "0">
+</body>
+<script type="text/javascript">
+$("#cabecera").load("cabecera_EN.html");
+$("#pie").load("pie_EN.html");
+$("#PanelIRS").load("/api/PanelIRS.html", function() {
+	sCuenta = "TEUCPf9d4sxDPGD6oYqGtRUhFs2zsWS4To";
+	$("#Propietario").text(sCuenta);
+	Verificar(sCuenta,"EN","Mostrar");
+});
+</script>
+</html>
