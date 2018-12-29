@@ -11,7 +11,7 @@ const Espanol =
 }
 const Ingles =
 {
-"Id":"Sign in",
+"Id":"Login",
 "Enviar":"SEND with any Wallet",
 "Importe":"Import",
 "Descripcion":"Description",
