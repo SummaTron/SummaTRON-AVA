@@ -118,6 +118,7 @@ function GenerarQR ()
 			$("#Name").text(sName);
 			sText = '{"amount":"1","data":"Link","token":"SummaTRON-L","address":"'+sAddress+'"}';
 			$("#Context").val(sText);
+			$("#LinkQR").html("");
 			$("#LinkQR").qrcode({
 						render:'canvas',
 						size:180,
