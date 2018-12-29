@@ -116,14 +116,13 @@
 	<p>(También puedes ver toda la información en <a href="https://github.com/SummaTron/SummaTRON-API" target="_blank">https://github.com/SummaTron/SummaTRON-API</a> )</p>
 	<p>En el  HEAD <br></p>
 	<pre><code style="color:grey">
-	&lt;script src="qrcode.min.js" &gt;&lt;/script&gt;
-	// Qrcode es un desarrollo de https://github.com/davidshimjs/qrcodejs
+	&lt;script src="jquery-qrcode-0.14.0.min.js" &gt;&lt;/script&gt;
 	&lt;script src="/api/js/apisummatron.js" &gt;&lt;/script&gt;&lt;br&gt;
 	</code>
 	</pre>
 	<p>En en BODY, en el lugar donde quieras que aparezca los QR para realizar el control de entrada<br></p>
 	<pre><code style="color:grey">
-	&lt;div id="PanelPago" style="display:block;"&gt;&lt;/div&gt; 
+	&lt;div id="PanelIRS" style="display:block;"&gt;&lt;/div&gt; 
 	//Con el css se controla cuando debe estar visible y cuando no.
 	</code>
 	</pre>
@@ -131,9 +130,8 @@
 	<pre>
 	<code style="color:grey">  
 	&lt;script&gt;
-	   $("#PanelPago").load("/api/PanelPago.html", function() {
+	   $("#PanelIRS").load("/api/PanelIRS.html", function() {
 	   sCuenta = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-	   $("#Propietario").text(sCuenta);
 	   Verificar(sCuenta,"ES","FUNCION a EJECUTAR");
 	   });
 	&lt;/script&gt;</code>

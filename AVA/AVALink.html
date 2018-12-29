@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
 <head>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125578563-1"></script>
@@ -14,14 +14,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="author" content="www.summatron.com">
-	<title>SummaTron. TRX Accounts Viewer, A SummTRON-API implementation.</title>	
+	<title>SummaTron. TRX Accounts Viewer. A implentation of SummaTRON-API.</title>	
 	<meta name="description" content="Agregador de cuentas de TRON"/>
 	<meta name="title" content="SummaTron. TRX Accounts Viewer"/>
 	<meta name="keywords" content="criptodivisa, crytocurrency, criptomoneda, tron, TRX, 2FA,  Authentication, Security, bitcoin, binance, tronwallet, wallet, "/>
 
-   <!-- <link href="/tron/css/bootstrap.min.css" rel="stylesheet">-->
-
-	<link rel="icon" type="image/png" href="/icon.png" />
+ 	<link rel="icon" type="image/png" href="/icon.png" />
     <link href="/tron/css/blog-post.css" rel="stylesheet">
 	<link href="/tron/css/font-awesome.min.css" rel="stylesheet">
     <link href='/tron/css/bootstrap.min.css' rel='stylesheet' />
@@ -34,51 +32,35 @@
 	<script src="/tron/js/jquery-ui.min.js"></script>	
 	<script src="/tron/js/funcionestron.js" ></script>
 	<script src="/api/js/jquery-qrcode-0.14.0.min.js" ></script>
-	<script src="/api/js/apisummatron.js" ></script>
-  </head>
+	<script src="/api/js/apisummatron.js" ></script> 
+	
+</head>
 <body>
 
 <div id="cabecera"></div>
+
 <div class="container">
 	<div class="row">
         <!-- Post Content Column -->
         <div class="col-lg-8">
 			<br>
-			<div id="titulo">
-				<center><label style="font-size:2.5em" id="titulo">SummaTRON-AVA </label>
-				<label style="font-size:1.5em">(<a href="http://www.summatron.com/AVA.html">Sign in</a>)(<a href="http://www.summatron.com/AVALink.html">Link</a>)</label>
-				</center>
-			</div>
-			<div id="PanelIRS" style="display:block"></div>
-			<div id="PanelSign" style="display:none">
-				<embed id="zonapdf" src="" type="application/pdf" width="700" height="1024"></embed>
-			</div>
-			<div id="PanelEspera" style="display:none">
-				<hr>
-				<center><h2><label>Procesando la petición</label></h2></center>
-				<hr>
-			</div>
-			<div id="PanelInfo" style="display:block">
-				<p style="text-align:justify">
-				SummaTRON is a project based on the Blockchain of TRON, a <a href="https://www.summatron.com/api.html" target="_blank"> API of identification </a> and two crytocurrency: SummaTRON ( STX) and IdTronix (ITX). <br>
-				<br>
-				The following describes the access to SUMMATRON-AVA, the process of linking the accounts from the wallet and how the amount of the investment is indicated to the system.
-				</p>				
-				<hr>
-				<div><img class = "img-fluid redondeado" style = "border: 1px solid gray" src="/tron/img/AVA1.png"/></div>				
-				<hr>
-				<div><img class = "img-fluid redondeado" style = "border: 1px solid gray" src="/tron/img/AVA2.png"/></div>
-				<hr>
-				<div><img class = "img-fluid redondeado" style = "border: 1px solid gray" src="/tron/img/AVA3.png"/></div>				
-				<hr>
-				<div><img class = "img-fluid redondeado" style = "border: 1px solid gray" src="/tron/img/AVA4.png"/></div>
-				<hr>
-				<div><img class = "img-fluid redondeado" style = "border: 1px solid gray" src="/tron/img/AVA5.png"/></div>			
-				<hr>
-				<br><br>
-			</div>
-		</div>
+			<center><label style="font-size:2em" id="titulo">SummaTRON </label>
+			<label style="font-size:1.5em">(<a href="http://www.summatron.com/AVA.html">Sign in</a>)(<a href="http://www.summatron.com/registro.html">Sign up</a>)</label>
 
+			<br style="font-size:0.3em">
+			<label style="font-size:1.5em">Fill the address to link it with IdTron</label>
+			<div id="Panel" style="display:block">
+				<br><br>
+				<input id = "Address" size="38" maxlength="34"" placeholder="Fill the address here"/>
+				<br><br>
+				<center><button class="btn btn-primary" id="grabar"  onclick="GenerarQR()">Generate QR</button></center>
+				<br>
+				<div id="LinkQR"" onclick="Copy('Context')" style="border-style:solid;border-width:5px;border-color:#242489;width:200px; height:200px; margin:5px;padding:5px"></div>
+				<br>
+				<span id="Name"></span>
+			</div>
+			</center>
+		</div>
 	    <div class="col-md-4">
 			<div class="card my-4">
 				<h5 class="card-header">How do I see my accounts?</h5>
@@ -101,7 +83,7 @@
 					<p style="text-align:justify">
 					1) Choose one of your accounts as the main one, and use it from the wallet (it does not have to be the one with the most TRX)<br>
 					2) Buy as many SummaTRON (STX) accounts as you have. <br>
-					3) From the main account send 1 STX to each account you want to link. <br>
+					3) From the main account send 1 STX to each account you want to link. You can use IdTron or other wallet. <br>
 					<br> <br>
 					This way all your accounts are linked in the TRON Blockchain. <br>
 					At any time you can link new accounts. <br>
@@ -113,20 +95,40 @@
 					</p> 
 				</div>
 			  </div>
+			</div>
 		</div>
+		
 	</div>
 </div>
-<input type="hidden" id="Precio" value= "">
-<input type="hidden" id="Dolar" value= "0">
-<input type="hidden" id="Euro" value= "0">
+<div id="pie"></div>
 </body>
-
 <script type="text/javascript">
 $("#cabecera").load("cabecera_EN.html");
-$("#pie").load("pie.html");
-$("#PanelIRS").load("/api/PanelIRS.html", function() {
-	sCuenta = "TGJ6iAYibFVJGuvXN9JFxHTTaoLR4z4wz4";
-	Registrar(sCuenta,"EN","AltaRegistro");
-});
+$("#pie").load("pie_EN.html");
+
+function GenerarQR () 
+{
+	sAddress = $("#Address").val();
+	$.get("https://wlcyapi.tronscan.org/api/account/"+sAddress,function (resp)
+	{
+		obj = resp;
+		if (sAddress==obj.address)
+		{
+			sName = "["+obj.name+"] "+ obj.address;
+			$("#Name").text(sName);
+			sText = '{"amount":"1","data":"Link","token":"SummaTRON-L","address":"'+sAddress+'"}';
+			$("#LinkQR").qrcode({
+						render:'canvas',
+						size:180,
+						color:'#000',
+						text:sText
+					});
+		}
+		else
+		{
+			alert ("The Address is incorrect");
+		}
+	});
+}
 </script>
 </html>

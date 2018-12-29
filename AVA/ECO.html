@@ -1,0 +1,160 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125578563-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-125578563-1');
+	</script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="www.summatron.com">
+	<title>SummaTron. TRX Accounts Viewer. A implentation of SummaTRON-API.</title>	
+	<meta name="description" content="Agregador de cuentas de TRON"/>
+	<meta name="title" content="SummaTron. TRX Accounts Viewer"/>
+	<meta name="keywords" content="criptodivisa, crytocurrency, criptomoneda, tron, TRX, 2FA,  Authentication, Security, bitcoin, binance, tronwallet, wallet, "/>
+
+ 	<link rel="icon" type="image/png" href="/icon.png" />
+    <link href="/tron/css/blog-post.css" rel="stylesheet">
+	<link href="/tron/css/font-awesome.min.css" rel="stylesheet">
+    <link href='/tron/css/bootstrap.min.css' rel='stylesheet' />
+	<link href='/tron/css/summadata.css' rel='stylesheet' />
+	<link href='/tron/css/jquery-ui.min.css' rel='stylesheet' />
+
+	<script src='/tron/js/scripts.js'></script>
+    <script src='/tron/js/jquery.min.js'></script>
+    <script src='/tron/js/bootstrap.min.js'></script>
+	<script src="/tron/js/jquery-ui.min.js"></script>	
+	<script src="/tron/js/funcionestron.js" ></script>
+	<script src="/api/js/jquery-qrcode-0.14.0.min.js" ></script>
+	<script src="/api/js/apisummatron.js" ></script> 
+	
+</head>
+<body>
+
+<div id="cabecera"></div>
+
+<div class="container">
+	<div class="row">
+        <!-- Post Content Column -->
+        <div class="col-lg-12">
+			<br>
+			<center><label style="font-size:2em" id="titulo">SummaTRON-ECO </label>
+			<br style="font-size:0.3em">
+			<label style="font-size:1.5em">Scan QR for complete Form</label>
+			</center>
+			<div id="Panel" style="display:block">
+				<table class="table table-striped">
+				 <thead>	
+					<tr>
+						<th scope="col" style="font-size:1emm;text-align:center;">Registration Form</th>
+						<th scope="col" style="font-size:1em;text-align:center;">QR Code</th>
+					</tr>
+				  </thead>
+				<tbody id="zona">
+				<td>
+				<br><br><br>
+				<span>Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" id="Id" size="10" readonly /><br><br>
+				<span>Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" id="Name" size="20" readonly /><br><br>
+				<span>Surname: </span><input type="text" id="Surname" size="30" readonly /><br><br>
+				<span>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" id="Email" size="30" readonly /><br><br>
+				<span>Address:&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" id="Address" size="38" readonly />
+				<br><br><br>
+				</td>
+				<td>
+				<div id="PanelIRS" style="display:block"></div>
+				<div id="PanelEspera" style="display:none">
+				<hr>
+				<center><h2><label>Procesing data</label></h2></center>
+				<hr>
+				</div>
+				</td>
+				</tbody>
+				</table>
+				<br>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="pie"></div>
+<input type="hidden" id="Precio" value= "">
+<input type="hidden" id="Dolar" value= "0">
+<input type="hidden" id="Euro" value= "0">
+</body>
+<script type="text/javascript">
+$("#cabecera").load("cabecera_EN.html");
+$("#pie").load("pie_EN.html");
+$("#PanelIRS").load("/api/PanelIRS.html", function() {
+	sCuenta = "TGJ6iAYibFVJGuvXN9JFxHTTaoLR4z4wz4";
+	ECO(sCuenta,"EN","Fill");
+});
+
+function ECO (sCuenta, sIdioma, sFuncion) 
+{
+	$("#PanelIRS").css("display","block");
+	switch (sIdioma)
+	{
+	case "ES":
+		{oLiterales=Espanol;break}	
+	case "EN":
+		{oLiterales=Ingles;break}
+	}
+	$("#lId").text(oLiterales.Registrar);
+	$.get( "/api/jsp/GenerarToken.jsp?Cuenta='"+sCuenta+"'", function(resp) {
+		try {obj = JSON.parse(resp.trim());}
+		catch {obj=resp.trim();}
+		sDescripcion = obj.Descripcion;
+		if (sDescripcion=="Cuenta no Registrada")
+		{
+			alert("Cuenta no Registrada");
+		}
+		else
+		{
+			sImporte = "1";
+			$("#Importe").val(sImporte);
+			$("#Descripcion").val(sDescripcion);
+			sText = '{"data":"'+sDescripcion+'","token":"SummaTRON-R","pubkey":"04F7B6442F5CCB364A181D5EEC66A3C26281F96E7B9BA4EEDA8BFC018174B5BABBF9FBB88B236F0FB42EA6F630B0013DB5EB82A1E94146D8A223C0374B4F26AABD"}';
+			$("#Context").val(sText);
+			$("#qrcodeId").qrcode({
+				render:'canvas',
+				size:180,
+				color:'#000',
+				text:sText
+			});
+		}
+
+		sDescripcion=$("#Descripcion").val();
+		sImporte = $("#Importe").val();
+		$("#resultado").html("<h3>"+oLiterales.Resultado+"</h3>");
+		$.get( "/eco/jsp/eco.jsp?Cuenta='"+sCuenta+"'&Descripcion='"+sDescripcion+"'", function(resp) {
+			try {obj = JSON.parse(resp.trim());}
+			catch {obj=resp.trim();}	
+			if (obj.Id=="Error")
+			{
+				$("#resultado").html("<h3>"+oLiterales.Tiempo+"</h3>");
+				$("#ID").css("display","none");
+				$("#resultado").css("display","block");
+			}
+			else
+			{	
+				$("#PanelIRS").css("display","none");
+				eval( sFuncion + '('+resp+',"'+sIdioma+'")' ); 
+			}
+		});
+	});
+}
+function Fill(aDatos, sIdioma)
+{
+	$("#Id").val(aDatos.Id);
+	$("#Name").val(aDatos.Name);
+	$("#Surname").val(aDatos.Surname);
+	$("#Email").val(aDatos.Email);
+	$("#Address").val(aDatos.Address);
+}
+</script>
+</html>
