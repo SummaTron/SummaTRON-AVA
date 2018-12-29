@@ -57,6 +57,7 @@
 				<div id="LinkQR"" onclick="Copy('Context')" style="border-style:solid;border-width:5px;border-color:#242489;width:200px; height:200px; margin:5px;padding:5px"></div>
 				<br>
 				<span id="Name"></span>
+				<input type="hidden" id="Context" value= "">
 			</div>
 			</center>
 		</div>
@@ -116,6 +117,7 @@ function GenerarQR ()
 			sName = "["+obj.name+"] "+ obj.address;
 			$("#Name").text(sName);
 			sText = '{"amount":"1","data":"Link","token":"SummaTRON-L","address":"'+sAddress+'"}';
+			$("#Context").val(sText);
 			$("#LinkQR").qrcode({
 						render:'canvas',
 						size:180,
