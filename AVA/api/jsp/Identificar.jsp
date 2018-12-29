@@ -22,7 +22,6 @@ String sUrlTransacciones= "https://api.tronscan.org/api/transaction?sort=-timest
 //String sDate_Start = Long.toString(System.currentTimeMillis()-10000000);
 //String sUrlTransacciones= "https://wlcyapi.tronscan.org/api/transfer?token=IdTronix&to="+sCuenta+"&date_start="+sDate_Start;
 //String sUrlHash= "https://wlcyapi.tronscan.org/api/transaction/";
-System.out.println("ENTRO EN IDENTIFICAR:"+sDescripcion);
 	Integer i=0, k=0, nTope=0, nIni=0, nFin=0, nVeces=0;
 	String sRespuesta="", sLista="", sTransacciones = "", sStatus="", sT="", sAccount="", sSaldo="", sName="", sTokenName="", sToken="";
 	String sBalance="", sHash="", sData="", sTo="", sFrom="", sAmount="", sTimestamp;
@@ -75,7 +74,7 @@ System.out.println("ENTRO EN IDENTIFICAR:"+sDescripcion);
 					//System.out.print ("  " + sData + " "+ sDescripcion + " ");
 					//System.out.println (nDif);
 					
-					if (nDif<60000) 
+					if (nDif<60000)
 					{
 						if (sData.equals(sDescripcion))
 						{
@@ -103,6 +102,7 @@ System.out.println("ENTRO EN IDENTIFICAR:"+sDescripcion);
 		   e.printStackTrace();
 		}
 	}
+System.out.println("Retorno:" + sLista);
 out.println(sLista.replaceAll("'","\""));
 %>
 <%! 

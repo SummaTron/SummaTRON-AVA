@@ -34,7 +34,7 @@ String sUrlHash= "https://wlcyapi.tronscan.org/api/transaction/";
 		sTransacciones += (char) intValueOfChar;
 	}
 	reader.close();
-	System.out.println("sUrlTransacciones en Cuentas:" + sUrlTransacciones);	
+	
 	JSONObject obj = new JSONObject(sTransacciones);
 	JSONArray arr = obj.getJSONArray("data");
 	for (i = 0; i < arr.length(); i++)
@@ -55,10 +55,12 @@ String sUrlHash= "https://wlcyapi.tronscan.org/api/transaction/";
 				
 			obj = new JSONObject(sTransacciones);
 			JSONObject obj1 = obj.getJSONObject("contractData");			
-			sData = hexToAscii(obj.getString("data"));
-			sLista = "{'Descripcion':'"+sData.replaceAll(" Sent with @TronWalletMe","")+"-"+ (int) (Math.random() * 100000)+"'}";
+			sData = hexToAscii(obj.getString("data")).replaceAll("%2F","-");
+			sLista = "{'Descripcion':'"+sData.replaceAll(" Sent from TronWallet","")+"-"+ (int) (Math.random() * 100000)+"'}";
 		}
 	}
+	
+System.out.println("Retorno:"+sLista);
 out.println(sLista.replaceAll("'","\""));
 %>
 <%! 

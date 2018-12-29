@@ -24,7 +24,7 @@ String sId="", sName="", sSurname="", sEmail="";
 String sPath ="C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 9.0\\webapps\\root\\pdfs\\";
 String sFichero = "";
 String sFicheroJSON = "{'Fichero':'Error'}";;
-String sClave = "D124C10815C8B13CD00D4143D5DD5F565AA8C4B7A80D94252EAF896A7CC14476";
+String sClave = "13119110a7767401eccbd9c33629b2bfee0ebf40afe28d6bae620a42eef147c0";
 	Integer i=0, j=0, k=0, nTope=0, nIni=0, nFin=0, nVeces=0;
 	String sRespuesta="", sLista="", sTransacciones = "", sStatus="", sTokenName="", sToken="";
 	String sData="", sTo="", sFrom="", sAmount="", sTimestamp="";
@@ -72,7 +72,7 @@ String sClave = "D124C10815C8B13CD00D4143D5DD5F565AA8C4B7A80D94252EAF896A7CC1447
 					sData = oCifrado.getString("data");
 					sData = sData.replaceAll(" Sent from TronWallet","");
 					sCipher = oCifrado.getString("cipher");
-					System.out.println("Data="+sData);
+					//System.out.println("Data="+sData);
 					//System.out.println("Cipher="+sCipher);
 					
 					Long nDif=System.currentTimeMillis()-Long.valueOf(sTimestamp);
@@ -127,10 +127,10 @@ String sClave = "D124C10815C8B13CD00D4143D5DD5F565AA8C4B7A80D94252EAF896A7CC1447
 									cb.setFontAndSize(BaseFont.createFont(BaseFont.HELVETICA, BaseFont.WINANSI, false), 11);
 
 									cb.beginText();
-									cb.showTextAligned(Element.ALIGN_LEFT, "Datos del Registro", 85f, 420f, 0f);
-									cb.showTextAligned(Element.ALIGN_LEFT, "Identificación: "+sId, 100f, 400f, 0f);
-									cb.showTextAligned(Element.ALIGN_LEFT, "Nombre: "+sName, 100f, 380f, 0f);
-									cb.showTextAligned(Element.ALIGN_LEFT, "Apellidos: "+sSurname, 100f, 360f, 0f);
+									cb.showTextAligned(Element.ALIGN_LEFT, "Registration data", 85f, 420f, 0f);
+									cb.showTextAligned(Element.ALIGN_LEFT, "Identification: "+sId, 100f, 400f, 0f);
+									cb.showTextAligned(Element.ALIGN_LEFT, "Name: "+sName, 100f, 380f, 0f);
+									cb.showTextAligned(Element.ALIGN_LEFT, "Surname: "+sSurname, 100f, 360f, 0f);
 									cb.showTextAligned(Element.ALIGN_LEFT, "Email: "+sEmail, 100f, 340f, 0f);
 									cb.showTextAligned(Element.ALIGN_LEFT, "Address: "+sFrom, 100f, 320f, 0f);
 									
@@ -156,12 +156,11 @@ String sClave = "D124C10815C8B13CD00D4143D5DD5F565AA8C4B7A80D94252EAF896A7CC1447
 								}
 								catch (Exception e) {System.out.println("Error en la llamada a reenviar.html "+e);}
 								
-								
 								break;
 							  } catch (IOException e) {System.out.println(e);
 								e.printStackTrace();
 							}
-							//System.out.println(sFicheroJSON);
+							
 						}
 						else
 						{i++;}
@@ -178,11 +177,11 @@ String sClave = "D124C10815C8B13CD00D4143D5DD5F565AA8C4B7A80D94252EAF896A7CC1447
 		catch (Exception e)
 		{
 		   // Error en algun momento.
-		   //System.out.println("Excepcion "+e);
+		   System.out.println("Excepcion "+e);
 		   //e.printStackTrace();
 		}
 	}
-
+System.out.println(sFicheroJSON);
 out.println(sFicheroJSON.replaceAll("'","\""));
 %>
 

@@ -99,9 +99,16 @@ Integer year=0, month=0, day=0, hour=0, min=0, sec=0;
 							k=100;
 							i=100;
 							obj1 = new JSONObject(sCipher);
-							sId = obj1.getString("id");
-							sName = obj1.getString("name")+ " " + obj1.getString("surname");
-							sMD5 = obj1.getString("md5");		
+
+							try {sId = obj1.getString("id");}
+							catch (Exception e){sId="";}
+							try {sName = obj1.getString("name");}
+							catch (Exception e){sName="";}
+							try {sSurname = obj1.getString("surname");}
+							catch (Exception e) {sSurname="";}
+							try {sMD5 = obj1.getString("md5");}
+							catch (Exception e) {sMD5="";}
+							sName = sName+ " " + sSurname;
 							sFichero = "DocumentoTRON_"+sId+".pdf";
 							sFicheroSigned = "DocumentoTRON_"+sId+"_signed.pdf";
 							sFicheroJSON = "{'Fichero':'"+sFicheroSigned+"'}";
@@ -121,8 +128,8 @@ Integer year=0, month=0, day=0, hour=0, min=0, sec=0;
 									PdfContentByte cb = pdfStamper.getUnderContent(j);
 									cb.setFontAndSize(BaseFont.createFont(BaseFont.HELVETICA, BaseFont.WINANSI, false), 8);
 									cb.beginText();
-									cb.showTextAligned(Element.ALIGN_LEFT, "Documento con huella "+sMD5+", firmado el "+sFecha+" por "+ sName +", ", 20f, 30f, 0f);
-									cb.showTextAligned(Element.ALIGN_LEFT, "Puede verficar la validez en: https://tronscan.org/#/transaction/"+sHash, 20f, 20f, 0f);
+									cb.showTextAligned(Element.ALIGN_LEFT, "Document with hash "+sMD5+", signed on "+sFecha+" by "+ sName +", ", 20f, 30f, 0f);
+									cb.showTextAligned(Element.ALIGN_LEFT, "Can verify the authenticity at: https://tronscan.org/#/transaction/"+sHash, 20f, 20f, 0f);
 								  
 									cb.endText();
 									cb.stroke();
@@ -141,7 +148,7 @@ Integer year=0, month=0, day=0, hour=0, min=0, sec=0;
 										sReenvio += (char) intValueOfChar;
 									}
 									reader.close();
-									System.out.println(sReenvio);
+									//System.out.println(sReenvio);
 									SendSummaTRON(sReenvio,1);
 								}
 								catch (Exception e) {System.out.println("Error en la llamada a reenviar.html "+e);}
@@ -150,7 +157,7 @@ Integer year=0, month=0, day=0, hour=0, min=0, sec=0;
 							  } catch (IOException e) {System.out.println(e);
 								e.printStackTrace();
 							}
-							//System.out.println(sFicheroJSON);
+							
 							break;
 						}
 						else
@@ -174,7 +181,7 @@ Integer year=0, month=0, day=0, hour=0, min=0, sec=0;
 		   e.printStackTrace();
 		}
 	}
-
+System.out.println(sFicheroJSON);
 out.println(sFicheroJSON.replaceAll("'","\""));
 %>
 
