@@ -1,7 +1,7 @@
 var aCuentas=[];
 var nBalance=0.0, nFrozen=0, nBandwidth=0, k=0;
-var oTokenN=[],oTokenB=[];
-var oTokens, oTransfers, sTransfers="[";
+var oTokenA=[],oTokenN=[],oTokenB=[];
+var oTokens, oTransfers, oTimeStamp=[], sTransfers="[";
 
 function Precio_Euro()
 {
@@ -179,6 +179,7 @@ function Mostrar(sCuenta)
 	$.get( "/ava/jsp/CuentasJSON.jsp?Cuenta='"+sCuenta+"'", function(resp) {
 		$("#PanelEspera").css("display","none");
 		$("#PanelLista").css("display","block");
+		aCuentas=[];
 		var sZona="";
 		var obj = JSON.parse(resp);
 		nInversion = obj.Inversion;
@@ -257,6 +258,13 @@ function ResumenCuentas()
 	$("#zonaDetalleCuenta").html("");
 	$("#zonaDetalleTokens").html("");
 	$("#PanelDetalle").css("display","block");
+	oTokenA=[];
+	oTokenB=[];
+	oTokenN=[];
+	sTransfers="[";
+	nBalance = 0;
+	nFrozen = 0;
+	nBandwidth = 0;
 	for (i in aCuentas)
 	{
 		LeerCuenta(aCuentas[i]);
@@ -283,10 +291,11 @@ function ResumenCuentas()
 	{
 		sToken = oTokens[i].name;
 		sBalance = oTokens[i].balance;
-		sZona = sZona + "<tr><td>"+ sToken+" : "+nDecimal(sBalance,0)+"</td></tr>";
+		sOnClick = "MostrarCuentasToken('"+sToken+"')";
+		sZona = sZona + "<tr><td onclick="+sOnClick+">"+ sToken+" : "+nDecimal(sBalance,0)+"</td></tr>";
 	}
 	$("#zonaDetalleTokens").append(sZona);
-	
+
 	sTransfers = sTransfers.substr(0,sTransfers.length-1);
 	sTransfers += "]";
 	osTransfers = JSON.parse(sTransfers);
@@ -311,6 +320,25 @@ function ResumenCuentas()
 	$("#zonaDetalleTransfer").append(sZona);
 	$("#lmenu2").click();
 }
+function MostrarTokens()
+{
+	$("#tokens").css("display","block");
+	$("#address").css("display","none");
+	
+}
+function MostrarCuentasToken(sToken)
+{
+	$("#tokens").css("display","none");
+	$("#address").css("display","block");
+	$("#zonaDetalleAddress").html("");
+	sZona="";
+	aAddress= oTokenA[sToken].split(";");
+	for (i=1;i<aAddress.length;i++)
+	{
+		sZona=sZona+"<tr><td>"+aAddress[i]+"</td><tr>";
+	}
+	$("#zonaDetalleAddress").append(sZona);
+}
 function LeerCuenta (sCuenta)
 {
 	$.ajaxSetup({async: false});
@@ -329,31 +357,40 @@ function LeerCuenta (sCuenta)
 				oTokenB.push(0);
 			}
 			oTokenB[oTokenN.indexOf(sToken)] += nTokenBalance;
+			// crea un array con todas las parejas address-token
+			if (oTokenA.indexOf(sToken)==-1)
+			{
+				oTokenA.push(sToken);
+			}
+			oTokenA[sToken]=oTokenA[sToken]+";"+sCuenta + ":  " + nDecimal(nTokenBalance,0) + " ("+sToken+")";
 		}
 	});
-
-	$.get( "https://wlcyapi.tronscan.org/api/transfer?sort=-timestamp&count=true&limit=15&start=0&address="+sCuenta, function(resp) {
-		var sZona="";
-		var obj = resp;
-		for (i in obj.data)
-		{
-			sFrom = obj.data[i].transferFromAddress;
-			sTo = obj.data[i].transferToAddress;
-			sToken = obj.data[i].tokenName;
-			sTimestamp = obj.data[i].timestamp;
-			if (sToken=="TRX")
-			{sAmount = obj.data[i].amount/1000000;}
-			else
-			{sAmount = obj.data[i].amount;}
-			var f = new Date(sTimestamp);
-			//sFecha= f.getDate()+"/"+f.getMonth()+"/"+f.FullYear()+" "+f.getHours()+":"+f.getMinutes();
-			sMonth=f.getMonth()+1
-			sFecha= pad(f.getDate(),2)+"/"+pad(sMonth,2)+"/"+f.getFullYear()+" "+pad(f.getHours(),2)+":"+pad(f.getMinutes(),2)+":"+pad(f.getSeconds(),2);
-			
-			sTransfers += '{"From":"'+ sFrom + '","To":"' + sTo + '","Token":"' + sToken + '","Amount":"' + sAmount + '","Timestamp":' + sTimestamp + ',"Fecha":"' + sFecha + '"},';	
-		}
-	});
-
+		$.get( "https://wlcyapi.tronscan.org/api/transfer?sort=-timestamp&count=true&limit=15&start=0&address="+sCuenta, function(resp) {
+			var sZona="";
+			var obj = resp;
+			for (i in obj.data)
+			{
+				sFrom = obj.data[i].transferFromAddress;
+				sTo = obj.data[i].transferToAddress;
+				sToken = obj.data[i].tokenName;
+				sTimestamp = obj.data[i].timestamp;
+				if (sToken=="TRX")
+				{sAmount = obj.data[i].amount/1000000;}
+				else
+				{sAmount = obj.data[i].amount;}
+				var f = new Date(sTimestamp);
+				//sFecha= f.getDate()+"/"+f.getMonth()+"/"+f.FullYear()+" "+f.getHours()+":"+f.getMinutes();
+				sMonth=f.getMonth()+1
+				sFecha= pad(f.getDate(),2)+"/"+pad(sMonth,2)+"/"+f.getFullYear()+" "+pad(f.getHours(),2)+":"+pad(f.getMinutes(),2)+":"+pad(f.getSeconds(),2);
+				
+				if (oTimeStamp.indexOf(sTimestamp)==-1)
+				{
+					oTimeStamp.push(sTimestamp);
+					sTransfers +='{"From":"'+ sFrom + '","To":"' + sTo + '","Token":"' + sToken + '","Amount":"' + sAmount + '","Timestamp":' + sTimestamp + ',"Fecha":"' + sFecha + '"},';					
+				}
+			}
+		});
+	
 }
 function DetalleTransfers(sCuenta)
 {	
@@ -398,7 +435,7 @@ function AltaRegistro(sFichero, sIdioma)
 		$("#PanelIRS").css("display","block");
 		$("#PanelSign").css("display","block");;
 		$("#zonapdf").attr("src","https://www.summatron.com/pdfs/"+sFichero);
-		sCuenta = "TEUCPf9d4sxDPGD6oYqGtRUhFs2zsWS4To";
+		sCuenta = "TGJ6iAYibFVJGuvXN9JFxHTTaoLR4z4wz4";
 		Firmar(sCuenta,sIdioma,sFichero,"FirmaDocumento");
 	});
 }
