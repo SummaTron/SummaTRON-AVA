@@ -20,16 +20,17 @@
 <%@ page import="org.jsoup.Connection" %>
 <%@ page import="org.json.*" %>
 <%@ page import="java.util.Random" %>
+<%@include file="variables.jsp" %>
 
 <%! 
 private static String  SendSummaTRON( String sCuenta, Integer nAmount)
 {
-String sOwner ="4145636802A022B6985D4ECB47F344E66BC0AFE683";
 String sToken = asciiToHex("SummaTRON");
 String sUrlTransfer = "https://api.trongrid.io/wallet/transferasset";
 String sUrlSing = "https://api.trongrid.io/wallet/gettransactionsign";
 String sUrlSend = "https://api.trongrid.io/wallet/broadcasttransaction";
-String sPrivateKey = "13119110A7767401ECCBD9C33629B2BFEE0EBF40AFE28D6BAE620A42EEF147C0";
+String sOwner =LeerOwner();
+String sPrivateKey = LeerPrivateKey();
 String result ="", sData="";
 try
 	{	
@@ -38,8 +39,6 @@ try
         objeto.put("to_address",sCuenta);
 		objeto.put("asset_name",sToken);
 		objeto.put("amount",nAmount);
-
-	//System.out.println(objeto.toString());
 
 		Response doc = 
             Jsoup.connect(sUrlTransfer)
@@ -52,9 +51,6 @@ try
 
 		result = doc.body();
 		JSONObject oSing = new JSONObject();
-		//sData=",\"data\":\"5492dad6774fa446c7606e72f6107ab9\"}}";
-		//result=result.replaceAll("}}",sData);
-		//System.out.println(result.toString());
 		
         oSing.put("transaction",result);
         oSing.put("privateKey",sPrivateKey);

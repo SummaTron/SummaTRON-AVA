@@ -24,7 +24,7 @@ String sId="", sName="", sSurname="", sEmail="";
 String sPath ="C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 9.0\\webapps\\root\\pdfs\\";
 String sFichero = "";
 String sFicheroJSON = "{'Fichero':'Error'}";;
-String sClave = "13119110a7767401eccbd9c33629b2bfee0ebf40afe28d6bae620a42eef147c0";
+String sClave = LeerPrivateKey();
 	Integer i=0, j=0, k=0, nTope=0, nIni=0, nFin=0, nVeces=0;
 	String sRespuesta="", sLista="", sTransacciones = "", sStatus="", sTokenName="", sToken="";
 	String sData="", sTo="", sFrom="", sAmount="", sTimestamp="";
