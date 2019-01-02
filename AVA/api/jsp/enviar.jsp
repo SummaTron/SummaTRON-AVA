@@ -20,6 +20,7 @@
 <%@ page import="org.jsoup.Connection" %>
 <%@ page import="org.json.*" %>
 <%@ page import="java.util.Random" %>
+<%@include file="variables.jsp" %>
 
 <%
 String sCuenta =  request.getParameter("Cuenta").replaceAll("'","");
@@ -27,12 +28,11 @@ String sCuenta64 =  request.getParameter("Cuenta64").replaceAll("'","");
 String sResultIdTronix="";
 String sResultSummaTRON ="";
 String sResultado="";
-//String sCuenta= "41CA7B3B7EBB7BBBE5DA0A5B63954B6A29590580DD";
 //String sResultTRX= SendTRX(sCuenta);
 	if ( Verificar (sCuenta) )
 	{
 		sResultIdTronix= SendIdTronix(sCuenta64,1000);
-		sResultSummaTRON= SendSummaTRON(sCuenta64,1);
+		sResultSummaTRON= SendSummaTRON(sCuenta64,10);
 		sResultado = "{\"Resultado\":\"Envio realizado\"}";
 	}
 	else
@@ -45,8 +45,7 @@ out.println(sResultado);
 <%!
 private static Boolean Verificar (String sCuenta)
 {
-String sSummaTRONID = "TCHDEWDqrSPGywDXxhMUffqwbdfpcN4rTH";
-String sUrlTransacciones="",sTransacciones="", sAccount="";
+String sUrlTransacciones="",sTransacciones="", sAccount="", sSummaTRONID="";
 int intValueOfChar;
 InputStream input;
 Reader reader;
@@ -56,6 +55,7 @@ Boolean bResultado=true;
 try
 	{
 		// Determinar Inversion
+		sSummaTRONID=LeerSummaTRONID();
 		sAccount="";
 		sUrlTransacciones= "https://wlcyapi.tronscan.org/api/transfer?count=true&limit=1&from="+sSummaTRONID+"&to="+sCuenta+"&token=SummaTRON";
 		sTransacciones="";
@@ -89,11 +89,11 @@ try
 <%! 
 private static String  SendTRX( String sCuenta)
 {
-String sOwner ="411957EEB166BE99085C51406C0DD8E6B1DC41396F";
 String sUrlTransaction = "https://api.trongrid.io/wallet/createtransaction";
 String sUrlSing = "https://api.trongrid.io/wallet/gettransactionsign";
 String sUrlSend = "https://api.trongrid.io/wallet/broadcasttransaction";
-String sPrivateKey = "1300CA34BD77D6DCB61DE314F96ECE7D9AB0A65E75B4EE56A3D40B89A00F1EEA";
+String sOwner = LeerOwner();
+String sPrivateKey = LeerPrivateKey();
 String result ="";
 try
 	{
@@ -151,13 +151,12 @@ try
 <%! 
 private static String  SendSummaTRON( String sCuenta, Integer nAmount)
 {
-String sCuenta64 = "41CA7B3B7EBB7BBBE5DA0A5B63954B6A29590580DD";
-String sOwner ="411957EEB166BE99085C51406C0DD8E6B1DC41396F";
 String sToken = asciiToHex("SummaTRON");
 String sUrlTransfer = "https://api.trongrid.io/wallet/transferasset";
 String sUrlSing = "https://api.trongrid.io/wallet/gettransactionsign";
 String sUrlSend = "https://api.trongrid.io/wallet/broadcasttransaction";
-String sPrivateKey = "1300CA34BD77D6DCB61DE314F96ECE7D9AB0A65E75B4EE56A3D40B89A00F1EEA";
+String sOwner = LeerOwner();
+String sPrivateKey = LeerPrivateKey();
 String result ="", sData="";
 try
 	{	
@@ -218,13 +217,12 @@ try
 <%! 
 private static String  SendIdTronix( String sCuenta, Integer nAmount)
 {
-String sCuenta64 = "41CA7B3B7EBB7BBBE5DA0A5B63954B6A29590580DD";
-String sOwner ="411957EEB166BE99085C51406C0DD8E6B1DC41396F";
 String sToken = asciiToHex("IdTronix");
 String sUrlTransfer = "https://api.trongrid.io/wallet/transferasset";
 String sUrlSing = "https://api.trongrid.io/wallet/gettransactionsign";
 String sUrlSend = "https://api.trongrid.io/wallet/broadcasttransaction";
-String sPrivateKey = "1300CA34BD77D6DCB61DE314F96ECE7D9AB0A65E75B4EE56A3D40B89A00F1EEA";
+String sOwner = LeerOwner();
+String sPrivateKey = LeerPrivateKey();
 String result ="";
 try
 	{
