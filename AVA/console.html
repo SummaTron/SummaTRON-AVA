@@ -1,0 +1,173 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125578563-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-125578563-1');
+	</script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="www.summatron.com">
+	<title>SummaTron. TRX Accounts Viewer. A implentation of SummaTRON-API.</title>	
+	<meta name="description" content="Agregador de cuentas de TRON"/>
+	<meta name="title" content="SummaTron. TRX Accounts Viewer"/>
+	<meta name="keywords" content="criptodivisa, crytocurrency, criptomoneda, tron, TRX, 2FA,  Authentication, Security, bitcoin, binance, tronwallet, wallet, "/>
+
+ 	<link rel="icon" type="image/png" href="/icon.png" />
+    <link href="/tron/css/blog-post.css" rel="stylesheet">
+	<link href="/tron/css/font-awesome.min.css" rel="stylesheet">
+    <link href='/tron/css/bootstrap.min.css' rel='stylesheet' />
+	<link href='/tron/css/summadata.css' rel='stylesheet' />
+	<link href='/tron/css/jquery-ui.min.css' rel='stylesheet' />
+
+	<script src='/tron/js/scripts.js'></script>
+    <script src='/tron/js/jquery.min.js'></script>
+    <script src='/tron/js/bootstrap.min.js'></script>
+	<script src="/tron/js/jquery-ui.min.js"></script>	
+	<script src="/tron/js/funcionestron.js" ></script>
+	<script src="/api/js/jquery-qrcode-0.14.0.min.js" ></script>
+	<script src="/api/js/apisummatron.js" ></script> 
+	
+</head>
+<body>
+
+<div id="cabecera"></div>
+
+<div class="container">
+	<div class="row">
+        <!-- Post Content Column -->
+        <div class="col-lg-12">
+			<br>
+			<center><label style="font-size:2.5em" id="titulo">SummaTRON-API CONSOLE </label>
+			</center>
+			<div id="PanelList" style="display:none">
+				<table class="table table-striped">
+				 <thead>	
+					<tr>
+						<th scope="col" style="text-align: center"><h4>User</h4></th>
+						<th scope="col" colspan="3" style="text-align: center"><h4>Operations</h4></th>
+					</tr>
+				  </thead>
+				<tbody id="zone">
+				</tbody>
+				</table>
+				<br>
+			</div>
+			<div id="PanelDetalle" style="display:none">
+			</div>
+			<div id="PanelIRS" style="display:block"></div>
+			<div id="PanelEspera" style="display:none">
+				<hr>
+				<center><h2><label>Procesing data</label></h2></center>
+				<hr>
+			</div>
+				<div class="modal fade" id="myModal" role="dialog">
+					<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+						<center><h4 class="modal-title" id="modal-title">Registation Data</h4></center>
+						</div>
+						<div class="modal-body" id="ZoneDetalle">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="pie"></div>
+</body>
+<script type="text/javascript">
+$("#cabecera").load("cabecera_EN.html");
+$("#pie").load("pie_EN.html");
+
+$("#PanelIRS").load("/api/PanelIRS.html", function() {
+	sCuenta = "TGJ6iAYibFVJGuvXN9JFxHTTaoLR4z4wz4";
+	//Verificar(sCuenta,"EN","ListAccount");
+	ListAccount(sCuenta);
+});
+function ListAccount(sTo)
+{
+	$("#PanelIRS").css("display","none");
+	$("#PanelList").css("display","block");
+	aFrom={};
+	sZone="";
+
+	$.get("https://wlcyapi.tronscan.org/api/transfer?token=SummaTRON&to="+sTo, function(resp)
+	{
+		obj=resp;
+		for (i=0;i<obj.data.length;i++)
+		{
+			oItem = obj.data[i];
+			aFrom[oItem.transferFromAddress]=oItem.transferFromAddress;
+		};
+		for (sFrom in aFrom)
+		{
+			sData = "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#myModal' onclick=Data('"+sFrom+"','"+sTo+"')>Register Data</button>"
+			sSummary = "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#myModal' onclick=Summary('"+sFrom+"','"+sTo+"')>Summary</button>"
+			sSend = "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#myModal' onclick=Send('"+sFrom+"')>Send Tokens</button>"
+			sZone+="<tr><td>"+sFrom+"</td><td>"+sData+"</td><td>"+sSummary+"</td><td>"+sSend+"</td></tr>";
+		};
+		$("#zone").append(sZone);
+	});
+}
+function Data(sFrom,sTo)
+{
+	$("#modal-title").html("<b><center>Registation Data</b></center>");
+	sZone="";
+	$.get("https://wlcyapi.tronscan.org/api/transfer?token=SummaTRON&to="+sTo+"&from="+sFrom, function(resp)
+	{
+		sHash=resp.data[0].transactionHash;
+		$.get("https://www.summatron.com/tron/jsp/descifrar.jsp?Hash="+sHash, function(resp)
+		{
+			obj=JSON.parse(resp);
+			sZone = "<b>Id: </b>" + obj.Id +"<br><b>Name: </b>"+obj.Name+"<br><b>Surname: </b>"+obj.Surname+"<br><b>Email: </b>"+obj.Email;
+			$("#ZoneDetalle").html(sZone);
+		});		
+	});
+}
+function Summary(sFrom,sTo)
+{
+	$("#modal-title").html("<center><b>Summary Data</b></center>");
+	sZone="";
+	$.get("https://wlcyapi.tronscan.org/api/transfer?token=SummaTRON&to="+sTo+"&from="+sFrom, function(resp)
+	{
+		sTotal=resp.total;
+		$.get("https://wlcyapi.tronscan.org/api/account/"+sFrom, function(resp)
+		{
+			sName = "["+resp.name+"]"
+			sBandwidth=resp.bandwidth.freeNetRemaining;
+			for (i in resp.tokenBalances)
+			{
+				oToken=resp.tokenBalances[i];				
+				if (oToken.name == "TRX"){sTRX = oToken.balance;}
+				if (oToken.name == "SummaTRON"){sSummaTRON = oToken.balance;}
+				if (oToken.name == "IdTronix"){sIdTronix = oToken.balance;}
+			}
+			sZone = "<b>Name: </b>" + sName +"<br><b>Bandwidth: </b>"+sBandwidth+"<br><b>TRX: </b>"+sTRX+"<br><b>SummaTRON: </b>"+sSummaTRON+"<br><b>IdTronix: </b>"+sIdTronix+"<br><b>Total Ids: </b>"+sTotal;
+			$("#ZoneDetalle").html(sZone);
+		});		
+	});
+}
+
+function Send(sFrom)
+{
+	$("#modal-title").html("<center><b>Send Tokens</b></center>")
+	sCuenta64=do58Decode(sFrom);
+	$.get("/api/jsp/enviar.jsp?Cuenta='"+sFrom+"'&Cuenta64='"+sCuenta64+"'", function(resp) {
+		obj = JSON.parse(resp);
+		sZone = "<h4><b>"+obj.Resultado+"<b></h4>";
+		$("#ZoneDetalle").html(sZone);
+	});
+}
+</script>
+</html>

@@ -46,152 +46,192 @@
 			<div id="PanelInfo" style="display:block">
 				<br>
 
-<article class="markdown-body entry-content" itemprop="text">
-	<h1>SummaTRON-API</h1>
-	<p style="text-align:justify">
-	API de acceso al sistema de identificación creada por SummaTRON, tipo 2FA y basado en el Blockchain de TRON para mejorar la identificación de usuarios en las páginas webs.<br>
-	<br>
-	Existen más de 1.060 millones de páginas web y más de 28 millones de dominos web regitrados. El API de SummaTRON quiere ayudar a simplificar y aumentar la seguridad de las páginas con identificación de usuario. <br>
-	<br>
-	El API de identificación actua con un sistema 2FA, idenficación de doble factor, basado en que un usuario que posee un cuenta TRON en una wallet y envía un Token ITX a otra cuenta, sólo puede ser él. Si ha perdido el control de su cuenta, ha perdido la identidad y su contenido (equivalente a perder un certificado digital junto a la clave).<br>
-	<br>
-	En está página puedes probar el funcionamiento. Enviando 1 IdTronix podrás ver la información de su cuenta sin tener que utilizar la clave privada. De esta forma si utiliza Windows no sería necesario teclear nada. Funciona como navegar por Tronscan, pero sin teclear la clave privada. No sustituye la funcionalidad de wallet:envio o pago.<br>
-	<br>
-	Aquí puedes comprar unos <a href="https://tronscan.org/#/tokens/list?search=IdTronix" target="_blank">IdTronix</a> para probar el funcionamiento. (1 TRX = 1.000 IdTronix).<br>
-	<br>
-	Basado en esta premisa, cualquier empresa que posea o quiera implantar un sistema de idenficación de usuarios, puede usar además de usuario y clave: SMS, Google Authenticator, Microsoft Authenticator, etc., SummaTRON será un método similar e incluso más fácil a no tener que esperar a que llegue el SMS, si no que él envía el Token.<br>
-	<br>
-	Por ejemplo una empresa que quiera usarlo solo tiene que integrar el API y registrase, lo que supone:<br>
-	<br>
-	<ul class="list-group list-group-flush">
-	<li class="list-group-item">
-	<p style="text-align:justify">
-	1) Crear o disponer de una cuenta TRON, debe comprar 1 SummaTRON y tantos IdTronix que crea necesarios según su número de usuarios, su precio es 0,001 TRX.<br>
-	</p>
-	</li>
-	<li class="list-group-item">
-	<p style="text-align:justify">
-	2) El proceso de registro consiste en enviar el SummaTRON a la cuenta del proyecto: TFQwLDzUvEc99ktd3TvUc9g3uATGmX2fS7, y muy importe, en la descripción indicar el nombre de la web, por ejemplo:<b>EmpresaXX</b>. Se usará para generar el código para la identificación.<br>
-	</p>				
-	</li>
-	<li class="list-group-item">
-	<p style="text-align:justify">
-	3) Indica a tus usuarios que se instalen una wallet (TronWalletMe tiene la opción PAGAR que agiliza el proceso al scanear todos los datos de una vez).<br>
-	</p>
-	</li>
-	<li class="list-group-item">		
-	<p style="text-align:justify">
-	4) En la instalación de la wallet los usuarios crearán una cuenta TRX. <br>
-	</p>
-	</li>
-	<li class="list-group-item">
-	<p style="text-align:justify">
-	5) En la web los usuarios deben registar esa cuenta TRX con un dato adicional, será la utilicen para identificarse.<br>
-	</p>
-	</li>
-	<li class="list-group-item">
-	<p style="text-align:justify">
-	6) La empresa les enviará un número de ITX a dicha cuenta para que el usuario inicialmente no tenga que hace nada, y ya pueda usarlos para identificarse.<br>
-	</p>
-	</li>
-	<li class="list-group-item">
-	<p style="text-align:justify">
-	7) El usuario cuando quiera entrar en la web (que ya habrá implantado el API de SummaTROn) le aparecerá unos QRs, scanea y envía un ITX que irá a la cuenta de la propia empresa, por tanto la empresa sólo necesitará comprar más ITX si aumentan sus clientes.<br>
-	</p>
-	</li></ul>
-	<br>
-	</p>
-	<p style="text-align:justify">
-	Si el Sistema TRON triunfa y el uso de criptomonedas y wallet se generaliza, los mismos usuarios podrán comprarse los ITX, de lo contrario la empresa movería todos los que compre entre sus clientes, necesatará tantos como identificaciones diarias tenga.  Mayor actividad, mayor número de ITX que necesita, pero el coste frente a un SMS es de 100.000 menos, ya que los ITX son reutilizables.<br>
-	</br>
-	Como ejemplos de uso hemos desarrollado un agregador de cuentas TRX, <a href="http://www.summatron.com/index.html" target="_blank">SummaTRON</a> (Summa todo en latín y TRON) y un e-commerce que hemos denominado <a href="http://www.summatron.com/shop/index.html" target="_blank">SHOP<a> donde los usuarios pueden comprar productos digitales mediante TRX y dar de alta sus propios produtos. <br>
-	<br>
-	</p>
-	<br>
-	<p>En la siguiente imagen se muestra el funcionamiento del API y más adelante se explica como incorporarlo al código de un página web.<p>
-	<br>
-	<div><img class = "img-fluid redondeado" style = "border: 1px solid gray" src="/tron/img/EsquemaSummaTRON-API.png"/></div>
-	<br>
-	<p>Para incorporar el API una página web, debe incluir el siguiente codigo</p>
-	<p>(También puedes ver toda la información en <a href="https://github.com/SummaTron/SummaTRON-API" target="_blank">https://github.com/SummaTron/SummaTRON-API</a> )</p>
-	<p>En el  HEAD <br></p>
-	<pre><code style="color:grey">
+				<article class="markdown-body entry-content" itemprop="text">
+					<h1>SummaTRON-API</h1>
+					<p style="text-align:justify">
+					API de acceso al sistema de identificación creada por SummaTRON, tipo 2FA y basado en el Blockchain de TRON para mejorar la identificación de usuarios en las páginas webs.<br>
+					<br><br>
+					Existen más de 1.060 millones de páginas web y más de 28 millones de dominos web regitrados. El API de SummaTRON quiere ayudar a simplificar y aumentar la seguridad de las páginas con identificación de usuario. <br>
+					<br><br>
+					El API de identificación actua con un sistema 2FA, idenficación de doble factor, basado en que un usuario que posee un cuenta TRON en una wallet y envía un Token ITX a otra cuenta, sólo puede ser él. Si ha perdido el control de su cuenta, ha perdido la identidad y su contenido (equivalente a perder un certificado digital junto a la clave).<br>
+					<br><br>
+					En la opcion <a href="https://www.summatron.com/AVA_ES.html" target="_blank">AVA</a> puedes probar el funcionamiento. Enviando 1 IdTronix podrás ver la información de su cuenta sin tener que utilizar la clave privada. De esta forma si utiliza Windows no sería necesario teclear nada. Funciona como navegar por Tronscan, pero sin teclear la clave privada. No sustituye la funcionalidad de wallet:envio o pago.<br>
+					<br>
+					Basado en esta premisa, cualquier empresa que posea o quiera implantar un sistema de idenficación de usuarios, puede usar además de usuario y clave: SMS, Google Authenticator, Microsoft Authenticator, etc., SummaTRON será un método similar e incluso más fácil a no tener que esperar a que llegue el SMS, si no que él envía el Token.<br>
+					<br>
+					Por ejemplo una empresa que quiera usarlo solo tiene que integrar el API y registrase, lo que supone:<br>
+					<br>
+					<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+					<p style="text-align:justify">
+					1) Crear o disponer de una cuenta TRON, debe comprar 1 SummaTRON y tantos IdTronix que crea necesarios según su número de usuarios, su precio es 0,001 TRX.<br>
+					</p>
+					</li>
+					<li class="list-group-item">
+					<p style="text-align:justify">
+					2) El proceso de registro consiste en enviar el SummaTRON a la cuenta del proyecto: TFQwLDzUvEc99ktd3TvUc9g3uATGmX2fS7, y muy importe, en la descripción indicar el nombre de la web, por ejemplo:<b>EmpresaXX</b>. Se usará para generar el código para la identificación.<br>
+					</p>				
+					</li>
+					<li class="list-group-item">
+					<p style="text-align:justify">
+					3) Indica a tus usuarios que se instalen una wallet (TronWalletMe tiene la opción PAGAR que agiliza el proceso al scanear todos los datos de una vez).<br>
+					</p>
+					</li>
+					<li class="list-group-item">		
+					<p style="text-align:justify">
+					4) En la instalación de la wallet los usuarios crearán una cuenta TRX. <br>
+					</p>
+					</li>
+					<li class="list-group-item">
+					<p style="text-align:justify">
+					5) En la web los usuarios deben registar esa cuenta TRX con un dato adicional, será la utilicen para identificarse.<br>
+					</p>
+					</li>
+					<li class="list-group-item">
+					<p style="text-align:justify">
+					6) La empresa les enviará un número de ITX a dicha cuenta para que el usuario inicialmente no tenga que hace nada, y ya pueda usarlos para identificarse.<br>
+					</p>
+					</li>
+					<li class="list-group-item">
+					<p style="text-align:justify">
+					7) El usuario cuando quiera entrar en la web (que ya habrá implantado el API de SummaTROn) le aparecerá unos QRs, scanea y envía un ITX que irá a la cuenta de la propia empresa, por tanto la empresa sólo necesitará comprar más ITX si aumentan sus clientes.<br>
+					</p>
+					</li></ul>
+					<br>
+					</p>
+					<p style="text-align:justify">
+					Si el Sistema TRON triunfa y el uso de criptomonedas y wallet se generaliza, los mismos usuarios podrán comprarse los ITX, de lo contrario la empresa movería todos los que compre entre sus clientes, necesatará tantos como identificaciones diarias tenga.  Mayor actividad, mayor número de ITX que necesita, pero el coste frente a un SMS es de 100.000 menos, ya que los ITX son reutilizables.<br>
+					</br>
+					Como ejemplos de uso hemos desarrollado un agregador de cuentas TRX, <a href="http://www.summatron.com/index.html" target="_blank">SummaTRON</a> (Summa todo en latín y TRON) y un e-commerce que hemos denominado <a href="http://www.summatron.com/shop/index.html" target="_blank">SHOP<a> donde los usuarios pueden comprar productos digitales mediante TRX y dar de alta sus propios produtos. <br>
+					<br>
+					</p>
+					<br>
+					<p>En la siguiente imagen se muestra el funcionamiento del API y más adelante se explica como incorporarlo al código de un página web.<p>
+					<br>
+					<div><img class = "img-fluid redondeado" style = "border: 1px solid gray" src="/tron/img/EsquemaSummaTRON-API.png"/></div>
+					<br>
+					<p>Para incorporar el API una página web, debe incluir el siguiente codigo</p>
+					<p>(También puedes ver toda la información en <a href="https://github.com/SummaTron/SummaTRON-API" target="_blank">https://github.com/SummaTron/SummaTRON-API</a> )</p>
+					<p>En el  HEAD <br></p>
+					<pre>
+	<code style="color:grey">
 	&lt;script src="jquery-qrcode-0.14.0.min.js" &gt;&lt;/script&gt;
 	&lt;script src="/api/js/apisummatron.js" &gt;&lt;/script&gt;&lt;br&gt;
 	</code>
-	</pre>
-	<p>En en BODY, en el lugar donde quieras que aparezca los QR para realizar el control de entrada<br></p>
-	<pre><code style="color:grey">
+					</pre>
+					<p>En en BODY, en el lugar donde quieras que aparezca los QR para realizar el control de entrada<br></p>
+					<pre>
+	<code style="color:grey">
 	&lt;div id="PanelIRS" style="display:block;"&gt;&lt;/div&gt; 
 	//Con el css se controla cuando debe estar visible y cuando no.
 	</code>
-	</pre>
-	<p>Al final del HTML se incorpora el código <br></p>
-	<pre>
+					</pre>
+					<p>Al final del HTML se incorpora el código <br></p>
+					<pre>
 	<code style="color:grey">  
 	&lt;script&gt;
 	   $("#PanelIRS").load("/api/PanelIRS.html", function() {
 	   sCuenta = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 	   Verificar(sCuenta,"ES","FUNCION a EJECUTAR");
 	   });
-	&lt;/script&gt;</code>
-	</pre>
-<p style="text-align:justify">
-Con este script se muestra el QR y se indica cual es la cuenta TRON de la empresa.<br>
-En FUNCION a EJECUTAR de debe indicar el nombre de la funcion que se ejecutará cuando la identificación finalice, se devuelve como
-parámetro la cuenta TRON, o un string vacio, si tras 60 segundos no ha se ha producido la identificación.<br>
-<br>
-<b>MUY IMPORTANTE</b><br>
-Para poder utilizar SummaTRON-API debe registrar el nombre de la empresa que será usado como parte de la clave que se envía en el proceso de identificacion.<br>
-<br>
-Este proceso se realiza enviando 1 SummaTRON desde la cuenta de la empresa, la misma que luego se debe incluir en la llamada a la función Verificar(), a la cuenta del proyecto: <b><br>
-TFQwLDzUvEc99ktd3TvUc9g3uATGmX2fS7</b>, y es muy importante, indicar en la Descripcion el nombre de la empresa, sugerimos que sea el dominio sin www ni .com.
-<br><br>
-Puedes comprar el Summatron en <a href="https://tronscan.org/#/tokens/list?search=SummaTRON" target="_blank">https://tronscan.org/#/tokens/list?search=SummaTRON</a>, 1 TRX = 1 SummaTRON.
-<br>
-Puedes comprar IdTronix en <a href="https://tronscan.org/#/tokens/list?search=IdTronix" target="_blank">https://tronscan.org/#/tokens/list?search=IdTronix</a>, 1 TRX = 1.000 IdTronix.
-</p>
-</article>
+	&lt;/script&gt;
+	</code>
+					</pre>
+					<p style="text-align:justify">
+					Con este script se muestra el QR y se indica cual es la cuenta TRON de la empresa.<br>
+					En FUNCION a EJECUTAR de debe indicar el nombre de la funcion que se ejecutará cuando la identificación finalice, se devuelve como
+					parámetro la cuenta TRON, o un string vacio, si tras 60 segundos no ha se ha producido la identificación.<br>
+					<br>
+					<b>MUY IMPORTANTE</b><br>
+					Para poder utilizar SummaTRON-API debe registrar el nombre de la empresa que será usado como parte de la clave que se envía en el proceso de identificacion.<br>
+					<br>
+					Este proceso se realiza enviando 1 SummaTRON desde la cuenta de la empresa, la misma que luego se debe incluir en la llamada a la función Verificar(), a la cuenta del proyecto: <b><br>
+					TFQwLDzUvEc99ktd3TvUc9g3uATGmX2fS7</b>, y es muy importante, indicar en la Descripcion el nombre de la empresa, sugerimos que sea el dominio sin www ni .com.
+					<br><br>
+					Puedes comprar el Summatron en <a href="https://tronscan.org/#/tokens/list?search=SummaTRON" target="_blank">https://tronscan.org/#/tokens/list?search=SummaTRON</a>, 1 TRX = 1 SummaTRON.
+					<br>
+					Puedes comprar IdTronix en <a href="https://tronscan.org/#/tokens/list?search=IdTronix" target="_blank">https://tronscan.org/#/tokens/list?search=IdTronix</a>, 1 TRX = 1.000 IdTronix.
+					</p>
+					<br><br>
+					
+					<p style="text-align:justify">
+					<b>PRÓXIMAS VERSIONES</b>
+					<br>
+					Estamos desarrollando un consola de control para poder gestionar los usuarios que se registran en la página web y cuantas veces se han identificado.<br>
+					Además permite controlar el número de tokens: IdTronix y SummaTRON, que tiene cada una de sus cuentas, pudiendo recargar su contenido.<br>
+					En el siguiente enlace puedes ver la versión Beta: <a href="https://www.summatron.com/console.html" target="_blank">Console</a>
+					<br><br>
+					Toda las funciones de esta consola están basadas en Tron.Network, así que la empresa no tiene que guardar información en sus bases de datos.<br>
+					La evolución de la consola permitirá: conocer número de accesos, franjas horarias, afluencia de usuarios, etc., siempre utilizando datos estadísticos.
+					<br><br>
+					Los usuarios podrán cambiar sus datos personales en IdTron y comunicarlo a todas las empresas donde se hayan registrado. SummaTRON-API permitirá recoger simpre la última versión actualizada.
+					<br>
+					</p>
+				</article>
 				<hr>
 			</div>
 		</div>
 
-	    <div class="col-md-4">
+	       <div class="col-md-4">
 			<div class="card my-4">
-				<h5 class="card-header">¿Cómo veo mis cuentas?</h5>
+				<h5 class="card-header">¿Por qué TRON?</h5>
 				<div class="card-body">
 					<p style="text-align:justify">
-					Desde la cuenta de la wallet, debes enviar un token IdTronix (ITX).<br>
-					Si quieres comprarlos IdTronix puedes hacerlo desde la wallet o desde <a href="https://tronscan.org/#/tokens/list?search=IdTronix" target="_blank">www.tronscan.org</a><br>
-					Para ello puede utilizar los QR que se muestran en la pantalla principal.<br>
-					TronWallet permite PAGAR scaneando el QR directamente lee todos los datos, en otro caso usa ENVIAR y teclea la Descripción indicada.<br>
-					Una vez recibido el token se muestra la cartera de cuentas enlazadas.<br>
-					Sólo el propietario de la Clave Privada puede enviar un token desde una cuenta, así identifica SummaTron a sus usuarios.<br>
-					<b>Sin tocar el PC o la tablet, el usuario puede acceder a sus cuentas de TRON.</b><br>
-					¡Simplemente increíble!, sin identificación ni registro previo. Todo gracias a <b>TRON.NETWORK</b>
+					Actualmente, una gran cantidad de información de usuarios y tráfico de Internet se concentra en algunas corporaciones como Google, Facebook, Amazon y Snapchat. <b> TRON </b> intenta mitigar este control otorgando la propiedad de la información devuelta a sus creadores. <br>
+					<br>
+					<b> TRON </b> es una plataforma abierta y descentralizada, y la tecnología de almacenamiento distribuido permitirá a los creadores de contenido digital eliminar intermediarios como Apple Store y Google Play. De esta forma, los productores de contenido obtienen sus ganancias directamente de los consumidores, sin intermediarios. <br>
+					<br>
+					<br> Libros electrónicos, música, fotos, artículos, etc. Se pueden comercializar fácilmente sin intermediarios para realizar el pago. <br>
+					<br>
+					Los bancos, Visa, Amazon, Google, Facebook, etc. toman gran parte de la cantidad de operaciones, básicamente porque hasta ahora no había alternativa. <br>
+					<br>
+					Las transacciones realizadas en TRON son trazables, a través de <a href="http://tronscan.org" target="_blank"> Tronscan.org </a>, los 2 participantes en la compra / venta pueden ver el resultado de la operación. <br>
+					<br>
+					Esta funcionalidad reemplaza la necesidad de contactar a su banco o Visa, cuando se "pierde" una transacción. Pero no reemplaza a los posibles estafadores, <b> TRON </b> mejora la tecnología, no la moralidad de las personas.
+					<br>
+					En <a href="http://www.summatron.com/shop" target="_blank"> Shop </a>, puede ver un ejemplo de cómo vender un libro electrónico sin registro, pasarela de pago ni cookies ". para mejorar la experiencia ". <br>
+					<br>
 					</p> 
 				</div>
-			  </div>
-			  <div class="card my-4">
-				<h5 class="card-header">¿Cómo enlazar cuentas?</h5>
-				<div class="card-body">
-					<p style="text-align:justify">
-						1) Elija una de tus cuentas, que será la principal.<br>
-						2) Compra tantos SummaTRON (STX) como cuentas tengas.<br>
-						3) Desde la cuenta principal envía 1 STX a cada cuenta que quieras enlazar.<br>
-						<br>
-						De esta forma todas tus cuentas quedan enlazadas en el Blockchain de TRON.<br>
-						En cualquier momento puedes enlazar nuevas cuentas.<br>
-						Si quieres desenlazar una cuenta, simplemente devuelve el STX a la cuenta principal.<br>
-						Solamente tus cuentas con al menos 1 STX aparecerán en el informe.
-						<br><br>
-						Si necesitas comprar SummaTronix para realizar el proceso de enlazar sus cuentas,
-						puedes comprarlos desde la wallet o desde <a href="https://tronscan.org/#/tokens/list?search=SummaTRON" target="_blank">www.tronscan.org</a><br>						
-					</p> 
-				</div>
-			  </div>
 			</div>
-		</div>
+
+			<div class = "card my-4">
+				<h5 class = "card-header"> ¿Cómo usar TRON? </h5>
+				<div class = "card-body">
+					<p style = "text-align: justify">
+					TRON nació con el objetivo de ensamblar una arquitectura basada en blockchain y que logra ejecutar 10,000 transacciones por segundo. <br>
+					Su moneda se llama Tronix (TRX) y se han emitido 100.000 millones. <br>
+					<br>
+					Los TRX se almacenan en una billetera electrónica, billetera en inglés. Wallet para dispositivos móviles, permite el pago, el envío o la recepción de TRX con otras cuentas en Trones. <br>
+					<br>
+					Con esta capacidad puede utilizarse como medio de pago en todo tipo de transacciones, pero también como una forma de identificación sin necesidad de registro, ya que solo el usuario tiene acceso a su cuenta TRX. <br> <br> <br>
+					<br>
+					Un sistema capaz de ejecutar operaciones en menos de 1 segundo tiene una multitud de utilidades. En <a href="http://www.summatron.com/shop" target="_blank"> Shop </a> puedes probar un sistema de compra / venta sin registro,
+					con pago inmediato sin necesidad de tarjetas de crédito, y con la posibilidad de registrar y modificar la información de un producto de forma segura solo por el creador. <br>
+					Es Internet 4.0, fuera de control de Facebook, Google o Amazon.
+					</p>
+				</div>
+			</div>
+			<div class="card my-4">
+				<h5 class="card-header">Links</h5>
+				<div class="card-body">
+					<div class="row">
+						<ul class="list-unstyled mb-0">
+							<li>
+							  <a href="https://tronlab.com/" target="_blank">TRON web oficial </a>
+							</li>
+							<li>
+							  <a href="https://www.reddit.com/r/Tronix" target="_blank">TRON en Reddit</a>
+							</li>
+							<li>
+							  <a href="https://twitter.com/tronfoundation" target="_blank">TRON en Twitter</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+        </div>
+	</div>
 	</div>
 </div>
 <div id="pie"></div>
