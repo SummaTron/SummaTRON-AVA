@@ -14,5 +14,7 @@ To login in SummaTRON-AVA you need IdTron or one wallet for scan a QR and send t
 The website is in:
 https://www.summatron.com/AVA.html
 
+<br><br>
+You can get all the information about SummaTRON-AVA proyect in our <a href="https://github.com/SummaTron/SummaTRON-AVA/blob/master/SummaTRON_AVA_WhitePaper_EN.pdf" target="blank">whitepaper</a>.
 
 
