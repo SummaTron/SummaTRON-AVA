@@ -124,22 +124,44 @@ function Data(sFrom,sTo)
 {
 	$("#modal-title").html("<b><center>Registation Data</b></center>");
 	sZone="";
-	$.get("https://wlcyapi.tronscan.org/api/transfer?token=SummaTRON&to="+sTo+"&from="+sFrom, function(resp)
-	{
-		sHash=resp.data[0].transactionHash;
-		$.get("https://www.summatron.com/tron/jsp/descifrar.jsp?Hash="+sHash, function(resp)
+	$("#ZoneDetalle").html("");
+	var oHash={};
+
+	$.get("https://wlcyapi.tronscan.org/api/transfer?sort=-timestamp&token=SummaTRON&to="+sTo+"&from="+sFrom, function(resp)
+	{	
+	i=0;
+	while (i<1)
 		{
-			obj=JSON.parse(resp);
-			sZone = "<b>Id: </b>" + obj.Id +"<br><b>Name: </b>"+obj.Name+"<br><b>Surname: </b>"+obj.Surname+"<br><b>Email: </b>"+obj.Email;
-			$("#ZoneDetalle").html(sZone);
-		});		
+			oHash["value"] = resp.data[i].transactionHash;
+			
+			$.post("https://api.trongrid.io/walletsolidity/gettransactionbyid", JSON.stringify(oHash), function(retorno) 
+			{
+				sCifrado = Hex2Ascii(retorno);			
+				if ( sCifrado.indexOf("ephemPublicKey")>0 )
+				{
+					sDate = new Date(JSON.parse(retorno).raw_data.timestamp);
+					sDate = sDate.getDate()+"-"+(sDate.getMonth()+1)+"-"+sDate.getFullYear()+" "+sDate.getHours()+":"+sDate.getMinutes()+":"+sDate.getSeconds();
+
+					sDescifrado = Hex2Ascii(JSON.parse(retorno).raw_data.data);
+					sCipher = JSON.parse(sDescifrado).cipher;
+					$.get("https://www.summatron.com/tron/jsp/descifrar.jsp?Cipher='"+sCipher+"'", function(rDescifrado)
+					{
+						obj=JSON.parse(rDescifrado);
+						sZone = "<b>Date:</b> "+sDate+"</br><b>Id: </b>" + obj.Id +"<br><b>Name: </b>"+obj.Name+"<br><b>Surname: </b>"+obj.Surname+"<br><b>Email: </b>"+obj.Email+"<br>";
+						$("#ZoneDetalle").append(sZone);
+						i=2;
+					});
+				}
+			});	
+			i++;
+		}
 	});
 }
 function Summary(sFrom,sTo)
 {
 	$("#modal-title").html("<center><b>Summary Data</b></center>");
 	sZone="";
-	$.get("https://wlcyapi.tronscan.org/api/transfer?token=SummaTRON&to="+sTo+"&from="+sFrom, function(resp)
+	$.get("https://wlcyapi.tronscan.org/api/transfer?sort=-timestamp&token=SummaTRON&to="+sTo+"&from="+sFrom, function(resp)
 	{
 		sTotal=resp.total;
 		$.get("https://wlcyapi.tronscan.org/api/account/"+sFrom, function(resp)
@@ -169,5 +191,22 @@ function Send(sFrom)
 		$("#ZoneDetalle").html(sZone);
 	});
 }
+function Hex2Ascii (hex) {
+    if (!(typeof hex === 'number' || typeof hex == 'string')) {
+      return ''
+    }
+
+    hex = hex.toString().replace(/\s+/gi, '')
+    const stack = []
+
+    for (var i = 0; i < hex.length; i += 2) {
+      const code = parseInt(hex.substr(i, 2), 16)
+      if (!isNaN(code) && code !== 0) {
+        stack.push(String.fromCharCode(code))
+      }
+    }
+
+    return stack.join('')
+  }
 </script>
 </html>
